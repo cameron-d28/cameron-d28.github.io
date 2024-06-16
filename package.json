@@ -1,0 +1,16 @@
+{
+  "name": "cameron-d28.github.io",
+  "version": "1.0.0",
+  "author": "Cameron Davis <cam170@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "build:css": "tailwindcss -i src/tailwind.css -o ./build/styles.css",
+    "build:html": "cp src/dev.html build/index.html",
+    "build": "yarn build:css && yarn build:html",
+    "dev": "http-server src -c-1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^2.2.7",
+    "http-server": "^14.0.0"
+  }
+}
