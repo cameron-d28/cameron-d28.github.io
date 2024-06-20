@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .header {
-  @apply bg-blue-500;
+  @apply bg-blue-500 w-full;
+}
+
+.main {
+  @apply grid grid-rows-2 font-bold;
 }
