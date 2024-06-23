@@ -7,10 +7,14 @@
     "build:css": "tailwindcss -i src/tailwind.css -o ./build/styles.css",
     "build:html": "cp src/dev.html build/index.html",
     "build": "yarn build:css && yarn build:html",
-    "dev": "http-server src -c-1"
+    "dev:build": "tailwindcss -i src/tailwind.css -o src/styles.css --watch --verbose",
+    "dev:serve": "http-server src -c-1",
+    "dev": "concurrently  --kill-others -c \"blue.bold,magenta.bold\" \"yarn dev:build\" \"yarn dev:serve\"",
+    "test:serve": "http-server src -c-1"
   },
   "devDependencies": {
-    "tailwindcss": "^2.2.7",
-    "http-server": "^14.0.0"
+    "concurrently": "^8.2.2",
+    "http-server": "^14.0.0",
+    "tailwindcss": "^2.2.7"
   }
 }

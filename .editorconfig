@@ -1,0 +1,5 @@
+# file used to make sure line endings is the same
+
+[*]
+end_of_line = lf
+insert_final_newline = true
