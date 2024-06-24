@@ -4,12 +4,16 @@
 
 @layer components {
   header {
-    @apply bg-blue-500 w-full;
+    @apply w-full text-3xl text-center;
+  }
+
+  footer {
+    @apply w-full text-lg text-center;
   }
 }
 
 .main {
-  @apply grid grid-cols-1 md:grid-cols-2 font-bold bg-red-500;
+  @apply grid grid-cols-1 md:grid-cols-2 font-bold;
 }
 
 .section {
@@ -17,13 +21,13 @@
 }
 
 .section-header {
-  @apply text-2xl;
+  @apply text-3xl;
 }
 
 .list-styling > li {
-  @apply hover:text-black; /* can have text appear only when hovered */
+  @apply h-6 hover:text-black; /* can have text appear only when hovered */
 }
 
 .list-styling > li:hover {
-  @apply text-xl underline;
+  @apply text-xl underline cursor-none;
 }

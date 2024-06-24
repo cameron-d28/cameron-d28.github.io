@@ -4,17 +4,19 @@
   "author": "Cameron Davis <cam170@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "build:css": "tailwindcss -i src/tailwind.css -o ./build/styles.css",
-    "build:html": "cp src/dev.html build/index.html",
-    "build": "yarn build:css && yarn build:html",
-    "dev:build": "tailwindcss -i src/tailwind.css -o src/styles.css --watch --verbose",
+    "dev:build": "tailwindcss -i src/tailwind.css -o src/styles.css --watch --verbose --minify",
     "dev:serve": "http-server src -c-1",
     "dev": "concurrently  --kill-others -c \"blue.bold,magenta.bold\" \"yarn dev:build\" \"yarn dev:serve\"",
-    "test:serve": "http-server src -c-1"
+    "build:css": "tailwindcss -i src/tailwind.css -o ./build/styles.css",
+    "build:html": "cp src/index.html build/index.html",
+    "build:assets": "cp src/public/website_pfp.png build/public/",
+    "build": "yarn build:css && yarn build:html && yarn build:assets",
+    "deploy": "yarn build && gh-pages -d build -b main"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "gh-pages": "^6.1.1",
     "http-server": "^14.0.0",
-    "tailwindcss": "^2.2.7"
+    "tailwindcss": "^3.3.3"
   }
 }
