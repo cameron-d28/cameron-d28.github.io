@@ -3,18 +3,23 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    @apply flex flex-col min-h-screen;
+  }
+
+  main {
+    @apply flex-grow;
+  }
   header {
     @apply w-full text-3xl text-center;
   }
 
   footer {
-    @apply w-full text-lg text-center;
+    @apply w-full text-lg text-center mt-auto py-4;
   }
 }
 
-.main {
-  @apply grid grid-cols-1 md:grid-cols-2 font-bold;
-}
+/* global */
 
 .section {
   @apply flex flex-col text-center p-4;
@@ -24,10 +29,25 @@
   @apply text-3xl;
 }
 
+/* # main page */
+
+.main {
+  @apply grid grid-cols-1 md:grid-cols-2 font-bold;
+}
+
 .list-styling > li {
   @apply h-6 hover:text-black; /* can have text appear only when hovered */
 }
 
 .list-styling > li:hover {
   @apply text-xl underline cursor-none;
+}
+
+/* people page */
+.people-main {
+  @apply flex flex-col text-center;
+}
+
+.people-header {
+  @apply flex flex-row justify-center items-center space-x-4;
 }

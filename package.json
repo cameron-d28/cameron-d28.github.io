@@ -8,7 +8,7 @@
     "dev:serve": "http-server src -c-1",
     "dev": "concurrently  --kill-others -c \"blue.bold,magenta.bold\" \"yarn dev:build\" \"yarn dev:serve\"",
     "build:css": "tailwindcss -i src/tailwind.css -o ./build/styles.css",
-    "build:html": "cp src/index.html build/index.html",
+    "build:html": "cp src/*.html build/",
     "build:assets": "cp src/public/website_pfp.png build/public/",
     "build": "yarn build:css && yarn build:html && yarn build:assets",
     "deploy": "yarn build && gh-pages -d build -b main"
