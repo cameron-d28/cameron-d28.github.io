@@ -51,3 +51,33 @@
 .people-header {
   @apply flex flex-row justify-center items-center space-x-4;
 }
+
+/* resume page */
+
+.resume-header {
+  @apply flex flex-col border-b-4 w-[98%];
+}
+
+.resume-main {
+  @apply flex flex-col items-start;
+}
+
+.resume-section {
+  @apply w-full px-3;
+}
+
+.resume-section h1 {
+  @apply text-2xl font-bold;
+}
+
+.resume-section p {
+  @apply ml-8;
+}
+
+.resume-experience-header {
+  @apply flex flex-row w-[100%] justify-between items-center;
+}
+
+.resume-header-title {
+  @apply flex flex-row;
+}
