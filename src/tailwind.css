@@ -59,11 +59,11 @@
 }
 
 .resume-main {
-  @apply flex flex-col items-start;
+  @apply flex flex-col items-start space-y-2;
 }
 
 .resume-section {
-  @apply w-full px-3;
+  @apply w-full space-y-2 px-3;
 }
 
 .resume-section h1 {
@@ -79,5 +79,18 @@
 }
 
 .resume-header-title {
-  @apply flex flex-row;
+  @apply flex flex-row space-x-1;
+}
+
+.resume-list-vertical-line {
+  @apply flex flex-row flex-wrap justify-center;
+}
+
+.resume-list-vertical-line li {
+  @apply flex items-center text-center;
+}
+
+.resume-list-vertical-line li:not(:last-child)::after {
+  content: "|";
+  @apply mx-2;
 }
