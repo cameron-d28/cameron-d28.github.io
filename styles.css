@@ -597,8 +597,20 @@ footer {
   height: 1.5rem;
 }
 
+.w-\[100\%\] {
+  width: 100%;
+}
+
+.w-\[98\%\] {
+  width: 98%;
+}
+
 .w-full {
   width: 100%;
+}
+
+.list-disc {
+  list-style-type: disc;
 }
 
 .grid-cols-1 {
@@ -613,6 +625,14 @@ footer {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
 }
@@ -621,8 +641,45 @@ footer {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.self-center {
+  align-self: center;
+}
+
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-3xl {
@@ -643,6 +700,14 @@ footer {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .underline {
@@ -716,6 +781,90 @@ footer {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+/* resume page */
+
+.resume-header {
+  display: flex;
+  width: 98%;
+  flex-direction: column;
+  border-bottom-width: 4px;
+}
+
+.resume-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.resume-main > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.resume-section {
+  width: 100%;
+}
+
+.resume-section > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.resume-section {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.resume-section h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+.resume-section p {
+  margin-left: 2rem;
+}
+
+.resume-experience-header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resume-header-title {
+  display: flex;
+  flex-direction: row;
+}
+
+.resume-header-title > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.resume-list-vertical-line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.resume-list-vertical-line li {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.resume-list-vertical-line li:not(:last-child)::after {
+  content: "|";
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 @media (min-width: 768px) {
