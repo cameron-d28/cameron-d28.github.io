@@ -59,7 +59,7 @@
 }
 
 .resume-main {
-  @apply flex flex-col items-start space-y-2;
+  @apply flex flex-col space-y-2;
 }
 
 .resume-section {
@@ -93,4 +93,36 @@
 .resume-list-vertical-line li:not(:last-child)::after {
   content: "|";
   @apply mx-2;
+}
+
+.resume-box-list {
+  @apply flex flex-col items-center;
+}
+
+.resume-box-list h3 {
+  @apply underline;
+}
+
+.resume-box-list p {
+  @apply ml-0;
+}
+
+/* Carpe Diem page */
+
+.carpe-main {
+  @apply flex flex-col;
+}
+
+.carpe-main h1 {
+  @apply text-lg;
+}
+
+/* hidden tiles */
+.hidden-main {
+  @apply grid grid-cols-4 overflow-scroll bg-black;
+}
+
+.hidden-box {
+  @apply bg-black text-black w-full h-full text-center items-center
+  hover:text-white hover:border-gray-600 hover:border-4 hover:rounded-lg;
 }

@@ -6,3 +6,7 @@ build/
 
 # macOS system files
 .DS_Store
+
+
+#hiden pages
+src/hidden-figures.html
