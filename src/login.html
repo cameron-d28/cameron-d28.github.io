@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="public/website_pfp.png" type="image/png" />
+  </head>
+  <body style="font-family: 'Courier New', Courier, monospace">
+    <header>
+      <h1>Login</h1>
+    </header>
+    <main class="main">
+      <form id="loginForm" action="index.html" method="get" class="login-form">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="login-button">Login</button>
+      </form>
+    </main>
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/"
+        >building pages to last</a
+      >
+    </footer>
+  </body>
+  <script>
+    // Check if user is already logged in
+    function checkLoginStatus() {
+      const sessionCookie = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("session="));
+      if (sessionCookie) {
+        const sessionData = JSON.parse(
+          decodeURIComponent(sessionCookie.split("=")[1])
+        );
+        window.location.href = "index.html";
+      }
+    }
+
+    // Set session cookie
+    function setSessionCookie(username) {
+      const sessionData = { username };
+      document.cookie = `session=${encodeURIComponent(
+        JSON.stringify(sessionData)
+      )}; path=/; max-age=3600`;
+    }
+
+    // Check login status on page load
+    checkLoginStatus();
+
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (username === "cam" && password === "test") {
+          alert("Login successful!");
+          setSessionCookie(username);
+          window.location.href = "index.html";
+        } else {
+          alert("Invalid username or password");
+        }
+      });
+  </script>
+</html>
