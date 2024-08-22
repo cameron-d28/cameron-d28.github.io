@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hidden figures</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="public/website_pfp.png" type="image/png" />
+  </head>
+  <body style="font-family: 'Courier New', Courier, monospace">
+    <main class="hidden-main">
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+      <div class="hidden-box">test</div>
+    </main>
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/"
+        >building pages to last</a
+      >
+    </footer>
+  </body>
+  <script>
+    // Check if user is already logged in
+    function checkLoginStatus() {
+      const sessionCookie = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("session="));
+      if (!sessionCookie) {
+        window.location.href = "login.html";
+        return;
+      }
+    }
+
+    checkLoginStatus();
+  </script>
+</html>
