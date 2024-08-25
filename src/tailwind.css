@@ -17,6 +17,14 @@
   footer {
     @apply w-full text-lg text-center mt-auto py-4;
   }
+
+  h1 {
+    @apply text-2xl font-bold;
+  }
+
+  h2 {
+    @apply text-xl font-semibold;
+  }
 }
 
 /* global */
@@ -125,4 +133,22 @@
 .hidden-box {
   @apply bg-black text-black w-full h-full text-center items-center
   hover:text-white hover:border-gray-600 hover:border-4 hover:rounded-lg;
+}
+
+.hidden-box ul {
+  @apply text-sm space-y-3;
+}
+
+/* future page */
+
+.future-main {
+  @apply flex flex-col text-center px-5 pt-3;
+}
+
+.future-main h2 {
+  @apply mb-1;
+}
+
+.future-main p {
+  @apply mb-4;
 }
