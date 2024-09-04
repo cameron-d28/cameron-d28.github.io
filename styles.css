@@ -581,6 +581,18 @@ footer {
   line-height: 1.75rem;
 }
 
+h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
 .ml-0 {
   margin-left: 0px;
 }
@@ -688,6 +700,11 @@ footer {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .px-8 {
@@ -955,6 +972,36 @@ footer {
   border-color: rgb(75 85 99 / var(--tw-border-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hidden-box ul > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+
+.hidden-box ul {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* future page */
+
+.future-main {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.75rem;
+  text-align: center;
+}
+
+.future-main h2 {
+  margin-bottom: 0.25rem;
+}
+
+.future-main p {
+  margin-bottom: 1rem;
 }
 
 .hover\:border-4:hover {
