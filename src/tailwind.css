@@ -63,11 +63,12 @@
 }
 
 /* people page */
-.people-main {
+
+.list-page-main {
   @apply flex flex-col text-center;
 }
 
-.people-header {
+.list-page-header {
   @apply flex flex-row justify-center items-center space-x-4;
 }
 
