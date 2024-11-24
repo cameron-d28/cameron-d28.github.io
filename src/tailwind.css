@@ -169,3 +169,20 @@
 .future-main p {
   @apply mb-4;
 }
+
+/* work page */
+.work-main {
+  @apply flex flex-col space-y-8 items-center px-4;
+}
+
+.work-section {
+  @apply w-full max-w-2xl;
+}
+
+.work-section h2 {
+  @apply text-2xl font-bold mb-4 text-center;
+}
+
+.work-section ul {
+  @apply space-y-2 pl-8 text-center;
+}
