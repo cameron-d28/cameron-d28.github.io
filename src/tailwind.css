@@ -100,11 +100,11 @@
 }
 
 .resume-experience-header {
-  @apply flex flex-col md:flex-row w-[100%] justify-between items-center;
+  @apply flex flex-col md:flex-row w-[100%] justify-between items-start;
 }
 
 .resume-header-title {
-  @apply flex flex-col text-center md:text-left md:space-x-1;
+  @apply flex flex-col text-left md:space-x-1;
 }
 
 .resume-list-vertical-line {
