@@ -8,7 +8,7 @@
     <link rel="icon" href="public/website_pfp.png" type="image/png" />
   </head>
   <body
-    class="flex flex-col items-start"
+    class="flex flex-col items-start [&_p]:text-sm"
     style="font-family: 'Courier New', Courier, monospace"
   >
     <header class="resume-header">
@@ -32,130 +32,158 @@
       <!-- EDUCATION SECTION -->
       <div class="resume-section">
         <h1>Education</h1>
-        <div class="resume-experience-header">
-          <div class="resume-header-title">
-            <h2 class="font-bold text-sm">
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <h2 class="font-bold resume-text">
               University of Pennsylvania, 2021 - 2026
             </h2>
-            <h2 class="italic text-sm">
-              Jerome Fisher Program in Management and Technology
-            </h2>
+            <h2 class="resume-text">Philadelphia, PA</h2>
           </div>
+          <p class="italic resume-text">
+            Jerome Fisher Program in Management and Technology
+          </p>
+          <p class="resume-text">
+            Penn Engineering: Data Analytics, Robotics, & AI w/ Minor in
+            Mathematics
+          </p>
+          <p class="resume-text">
+            Wharton School: Entreprenuership & Innovation
+          </p>
         </div>
-        <!-- create bullet point list  -->
-        <p class="resume-indent text-sm">
-          Penn Engineering: Data Analytics, Robotics, & AI w/ Minor in
-          Mathematics
-        </p>
-        <p class="resume-indent text-sm">
-          Wharton School: Entreprenuership & Innovation
-        </p>
-        <div class="resume-experience-header">
-          <h2 class="font-bold text-sm">Lakeside High School, 2017 - 2021</h2>
-          <h2 class="text-right text-sm">Seattle, WA</h2>
+
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <h2 class="font-bold resume-text">
+              Lakeside High School, 2017 - 2021
+            </h2>
+            <h2 class="resume-text">Seattle, WA</h2>
+          </div>
         </div>
       </div>
 
       <!-- COURSES -->
+
       <div class="resume-section">
-        <div class="flex flex-col items-center space-x-2">
+        <div class="flex flex-row items-center gap-2">
           <h1>Relevant Coursework</h1>
-          <h3>(a * indicates graduate or MBA courses)</h3>
+          <p class="italic resume-text">
+            (a * indicates graduate or MBA courses)
+          </p>
         </div>
-        <p>
-          Data Science & Analytics: Statistics in Data Science*, Big Data
-          Analytics*, Data Science for Finance*
-        </p>
-        <p>
-          Systems Thinking: Introduction to Dynamical Systems, Learning in
-          Robotics*
-        </p>
-        <p>
-          Technological Management: Scaling Operations in Tech Venture*,
-          Management & Technology, Management of Technology
-        </p>
+
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <h2 class="font-bold resume-text">Data Science & Analytics</h2>
+          </div>
+          <p class="resume-text">
+            Statistics in Data Science*, Big Data Analytics*, Data Science for
+            Finance*
+          </p>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <h2 class="font-bold resume-text">Systems Thinking</h2>
+          </div>
+          <p class="resume-text">
+            Introduction to Dynamical Systems, Learning in Robotics*
+          </p>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <h2 class="font-bold resume-text">Technological Management</h2>
+          </div>
+          <p class="resume-text">
+            Scaling Operations in Tech Venture*, Management & Technology,
+            Management of Technology
+          </p>
+        </div>
       </div>
 
       <!-- WORK EXPERIENCE SECTION -->
       <div class="resume-section">
         <h1>Work Experience</h1>
-        <div class="experience-div">
-          <div class="resume-experience-header">
-            <div class="resume-header-title">
-              <h2 class="font-bold">Resilience Education,</h2>
-              <h2 class="italic">Backend Intern</h2>
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <div>
+              <h2 class="font-bold resume-text">Resilience Education</h2>
+              <p class="italic resume-text">Backend Intern</p>
             </div>
-            <h2>Summer 2024 - (Sole Technical Intern) | Hybrid</h2>
+            <p class="resume-text">
+              Summer 2024 - (Sole Technical Intern) | Hybrid
+            </p>
           </div>
-          <p>
+          <p class="resume-text">
             Curated backend infrastructure for understanding the organizations
             distribution of donations
           </p>
         </div>
 
-        <div class="experience-div">
-          <div class="resume-experience-header">
-            <div class="resume-header-title">
-              <h2 class="font-bold">shades,</h2>
-              <h2 class="italic">SWE Intern</h2>
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <div>
+              <h2 class="font-bold resume-text">shades</h2>
+              <p class="italic resume-text">SWE Intern</p>
             </div>
-            <h2>Summer 2023 - (Sole Intern) | Hybrid</h2>
+            <p class="resume-text">Summer 2023 - (Sole Intern) | Hybrid</p>
           </div>
-          <p>
+          <p class="resume-text">
             Increased user retention through integrating a full-stack game into
             the mobile application
           </p>
         </div>
 
-        <div class="experience-div">
-          <div class="resume-experience-header">
-            <div class="resume-header-title">
-              <h2 class="font-bold">Diversatech,</h2>
-              <h2 class="italic">Co-President</h2>
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <div>
+              <h2 class="font-bold resume-text">Diversatech</h2>
+              <p class="italic resume-text">Developer -> PM -> Co-President</p>
             </div>
-            <h2>Fall 2022 - Present | PHL, PA</h2>
+            <p class="resume-text">Fall 2022 - Present | PHL, PA</p>
           </div>
-          <ul class="list-disc pl-10">
-            <li>manage frontend, backend, and design team</li>
-            <li>work done with react, mongodb, nodejs, vercel</li>
-            <li>projects: Resilience Education, Coinbase, shades, InstaHub</li>
-          </ul>
+          <p class="resume-text">
+            managed frontend, backend, and design team with work done in react,
+            mongodb, nodejs, vercel. projects with Resilience Education,
+            Coinbase, shades, InstaHub.
+          </p>
         </div>
 
-        <div class="experience-div">
-          <div class="resume-experience-header">
-            <div class="resume-header-title">
-              <h2 class="font-bold">AltraVue,</h2>
-              <h2 class="italic">Equity Analyst</h2>
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <div>
+              <h2 class="font-bold resume-text">AltraVue</h2>
+              <p class="italic resume-text">Equity Analyst</p>
             </div>
-            <h2>Summer 2022 - (Sole Intern) | SEA, WA</h2>
+            <p class="resume-text">Summer 2022 - (Sole Intern) | SEA, WA</p>
           </div>
-          <p>
+          <p class="resume-text">
             Provided stock recommendation within photonics industry to partners
             at the firm. Recommendation placed on watchlist.
           </p>
         </div>
 
-        <div class="experience-div">
-          <div class="resume-experience-header">
-            <h2 class="font-bold">Cascade Investments</h2>
-            <h2>
+        <div class="resume-item">
+          <div class="resume-header-row">
+            <div>
+              <h2 class="font-bold resume-text">Cascade Investments</h2>
+              <p class="italic resume-text">Equity Analyst</p>
+            </div>
+            <p class="resume-text">
               Summer 2021 & Summer 2020 - (Sole High-School Intern) | SEA, WA
-            </h2>
+            </p>
           </div>
-          <ul class="list-disc pl-10">
-            <li>
-              2021 (Hybrid) - Spent time as a member of the real estate
-              investment team looking for high returning real estate
-              investments. Participated with analysis and provided market
-              research recommendation to the real estate investment team.
-            </li>
-            <li>
-              2020 (Remote – first high school intern) - Conducted a rotational
-              internship through various investment divisions, which include
-              private & public equity, operations, and real estate.
-            </li>
-          </ul>
+          <p class="resume-text">
+            2021 (Hybrid) - Spent time as a member of the real estate investment
+            team looking for high returning real estate investments.
+            Participated with analysis and provided market research
+            recommendation to the real estate investment team.
+          </p>
+          <p class="resume-text">
+            2020 (Remote – first high school intern) - Conducted a rotational
+            internship through various investment divisions, which include
+            private & public equity, operations, and real estate.
+          </p>
         </div>
       </div>
 
@@ -200,6 +228,7 @@
           <li>Yale Young Global Scholars (Beijing, 2019)</li>
           <li>We The Future Changemaker (Seattle, 2020)</li>
           <li>UC Irvine GATI Visioneer (Irvine, 2023)</li>
+          <li>M&T Intern Fellowship Award (2023 & 2024)</li>
         </ul>
       </div>
 
@@ -217,6 +246,7 @@
       <a href="https://jeffhuang.com/designed_to_last/"
         >building pages to last</a
       >
+      <p>this is a custom pure html and css website desgined by me</p>
     </footer>
   </body>
 </html>

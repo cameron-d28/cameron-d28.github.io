@@ -74,37 +74,32 @@
 
 /* resume page */
 
-.resume-header {
-  @apply flex flex-col border-b-4 w-[98%];
-}
-
-.resume-main {
-  @apply flex flex-col space-y-4 pb-8;
-}
-
 .resume-section {
-  @apply w-full flex flex-col space-y-2 px-3 pb-2 border-b-4 border-gray-300;
+  @apply w-full flex flex-col space-y-2 px-3 pb-4 border-b border-gray-300;
 }
 
-.resume-section::after {
-  content: "";
-  @apply absolute bottom-0 left-0 right-0 h-px bg-gray-300 mx-[-1rem];
+.resume-item {
+  @apply flex flex-col space-y-1 ml-4;
 }
 
-.resume-section h1 {
-  @apply text-2xl font-bold;
+.resume-header-row {
+  @apply flex flex-row justify-between items-center w-full;
 }
 
-.resume-section p {
-  @apply ml-8;
+.resume-text {
+  @apply text-sm;
 }
 
-.resume-experience-header {
-  @apply flex flex-col md:flex-row w-[100%] justify-between items-start;
+.resume-box-list {
+  @apply flex flex-col items-center;
 }
 
-.resume-header-title {
-  @apply flex flex-col text-left md:space-x-1;
+.resume-box-list h3 {
+  @apply underline;
+}
+
+.resume-box-list p {
+  @apply ml-0;
 }
 
 .resume-list-vertical-line {
@@ -118,18 +113,6 @@
 .resume-list-vertical-line li:not(:last-child)::after {
   content: "|";
   @apply mx-2;
-}
-
-.resume-box-list {
-  @apply flex flex-col items-center;
-}
-
-.resume-box-list h3 {
-  @apply underline;
-}
-
-.resume-box-list p {
-  @apply ml-0;
 }
 
 /* Carpe Diem page */
@@ -185,4 +168,14 @@
 
 .work-section ul {
   @apply space-y-2 pl-8 text-center;
+}
+
+/* .quadrant {
+  @apply flex items-center justify-center text-2xl font-bold border border-black;
+} */
+
+/* has hovering qualities */
+.quadrant {
+  @apply flex items-center justify-center text-2xl font-bold border border-black 
+  bg-black text-white hover:bg-white hover:text-black;
 }

@@ -8,13 +8,38 @@
     <link rel="icon" href="public/website_pfp.png" type="image/png" />
   </head>
   <body style="font-family: 'Courier New', Courier, monospace">
-    <div class="fixed top-[1%] right-[1%] w-[0.1%] h-1/3 bg-black"></div>
-    <div class="fixed top-[1%] right-[1%] h-[0.1%] w-1/4 bg-black"></div>
+    <div class="grid grid-cols-2 grid-rows-2 h-screen w-screen">
+      <div class="quadrant">Quadrant 1</div>
+      <div class="quadrant">Quadrant 2</div>
+      <div class="quadrant">Quadrant 3</div>
+      <div class="quadrant">Quadrant 4</div>
+    </div>
     <div
-      class="fixed top-[1%] right-1/4 w-[0.1%] h-[10%] bg-black mr-[1%]"
-    ></div>
-    <div class="fixed top-[11%] right-[11%] h-[0.1%] w-[15%] bg-black"></div>
-    <div class="fixed top-[34.3%] right-[1%] h-[0.1%] w-[10%] bg-black"></div>
-    <div class="fixed top-[11%] right-[11%] w-[0.1%] h-[23.3%] bg-black"></div>
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[80%] h-[60%] border-2 border-black flex flex-col items-center justify-center"
+    >
+      <!-- look in styling animations notes in obsidian for a more sophsticated way -->
+      <p id="animated-trending"></p>
+    <p id="animated-established"></p>
   </body>
+
+  <script>
+    const trending_text = "trending up";
+    const established_text = "established jan 1 2025"
+    const delay = 100; // milliseconds between each character
+
+    const trendingElement = document.getElementById("animated-trending");
+  const establishedElement = document.getElementById("animated-established");
+
+    
+   function animateText(element, text, index = 0) {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      setTimeout(() => animateText(element, text, index + 1), delay);
+    }
+  }
+  
+  // Start both animations
+  animateText(trendingElement, trending_text);
+  animateText(establishedElement, established_text);
+  </script>
 </html>
