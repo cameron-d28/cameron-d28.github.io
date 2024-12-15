@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="public/website_pfp.png" type="image/png" />
+  </head>
+  <body style="font-family: 'Courier New', Courier, monospace">
+    <div class="grid grid-cols-2 grid-rows-2 h-screen w-screen">
+      <div class="quadrant">Quadrant 1</div>
+      <div class="quadrant">Quadrant 2</div>
+      <div class="quadrant">Quadrant 3</div>
+      <div class="quadrant">Quadrant 4</div>
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[80%] h-[60%] border-2 border-black flex flex-col items-center justify-center"
+    >
+      <!-- look in styling animations notes in obsidian for a more sophsticated way -->
+      <p id="animated-trending"></p>
+    <p id="animated-established"></p>
+  </body>
+
+  <script>
+    const trending_text = "trending up";
+    const established_text = "established jan 1 2025"
+    const delay = 100; // milliseconds between each character
+
+    const trendingElement = document.getElementById("animated-trending");
+  const establishedElement = document.getElementById("animated-established");
+
+    
+   function animateText(element, text, index = 0) {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      setTimeout(() => animateText(element, text, index + 1), delay);
+    }
+  }
+  
+  // Start both animations
+  animateText(trendingElement, trending_text);
+  animateText(establishedElement, established_text);
+  </script>
+</html>
