@@ -8,13 +8,13 @@
     <link rel="icon" href="public/website_pfp.png" type="image/png" />
   </head>
   <body
-    class="flex flex-col items-start [&_p]:text-sm"
+    class="flex flex-col items-start text-sm"
     style="font-family: 'Courier New', Courier, monospace"
   >
     <header class="resume-header">
       <h1>Cameron Davis</h1>
       <h3 class="text-sm">
-        (425)-305-1543 |
+        <!-- get a second phone number that goes here -->
         <a href="mailto:daviscam@wharton.upenn.edu" class="hover:underline"
           >daviscam@wharton.upenn.edu</a
         >
@@ -34,17 +34,15 @@
         <h1>Education</h1>
         <div class="resume-item">
           <div class="resume-header-row">
-            <h2 class="font-bold resume-text">
-              University of Pennsylvania, 2021 - 2026
-            </h2>
+            <h2 class="font-bold resume-text">University of Pennsylvania</h2>
             <h2 class="resume-text">Philadelphia, PA</h2>
           </div>
           <p class="italic resume-text">
             Jerome Fisher Program in Management and Technology
           </p>
           <p class="resume-text">
-            Penn Engineering: Data Analytics, Robotics, & AI w/ Minor in
-            Mathematics
+            Penn Engineering: Data Analytics, Robotics, Artificial Intelligence;
+            Minor in Mathematics
           </p>
           <p class="resume-text">
             Wharton School: Entreprenuership & Innovation
@@ -53,51 +51,62 @@
 
         <div class="resume-item">
           <div class="resume-header-row">
-            <h2 class="font-bold resume-text">
-              Lakeside High School, 2017 - 2021
-            </h2>
+            <h2 class="font-bold resume-text">Lakeside High School</h2>
             <h2 class="resume-text">Seattle, WA</h2>
           </div>
         </div>
       </div>
 
       <!-- COURSES -->
-
       <div class="resume-section">
-        <div class="flex flex-row items-center gap-2">
-          <h1>Relevant Coursework</h1>
-          <p class="italic resume-text">
-            (a * indicates graduate or MBA courses)
-          </p>
-        </div>
+        <div class="flex flex-row justify-between relative">
+          <!-- Left side: Coursework -->
+          <div class="flex-2">
+            <div class="flex flex-row items-center gap-2">
+              <h1>Relevant Coursework</h1>
+            </div>
 
-        <div class="resume-item">
-          <div class="resume-header-row">
-            <h2 class="font-bold resume-text">Data Science & Analytics</h2>
-          </div>
-          <p class="resume-text">
-            Statistics in Data Science*, Big Data Analytics*, Data Science for
-            Finance*
-          </p>
-        </div>
+            <div class="resume-item">
+              <div class="resume-header-row">
+                <h2 class="font-bold resume-text">Data Science & Analytics</h2>
+              </div>
+              <p class="resume-text">
+                Statistics in Data Science, Big Data Analytics, Data Science for
+                Finance
+              </p>
+            </div>
 
-        <div class="resume-item">
-          <div class="resume-header-row">
-            <h2 class="font-bold resume-text">Systems Thinking</h2>
-          </div>
-          <p class="resume-text">
-            Introduction to Dynamical Systems, Learning in Robotics*
-          </p>
-        </div>
+            <div class="resume-item">
+              <div class="resume-header-row">
+                <h2 class="font-bold resume-text">Systems Thinking</h2>
+              </div>
+              <p class="resume-text">
+                Introduction to Dynamical Systems, Learning in Robotics
+              </p>
+            </div>
 
-        <div class="resume-item">
-          <div class="resume-header-row">
-            <h2 class="font-bold resume-text">Technological Management</h2>
+            <div class="resume-item">
+              <div class="resume-header-row">
+                <h2 class="font-bold resume-text">Technological Management</h2>
+              </div>
+              <p class="resume-text">
+                Scaling Operations in Tech Venture, Management & Technology,
+                Management of Technology
+              </p>
+            </div>
           </div>
-          <p class="resume-text">
-            Scaling Operations in Tech Venture*, Management & Technology,
-            Management of Technology
-          </p>
+
+          <!-- Vertical Line -->
+          <div class="mx-8 border-l my-2 border-gray-300"></div>
+
+          <!-- SKILLS -->
+          <div class="flex-1">
+            <h1>Skills</h1>
+            <ul>
+              <li>Coding: python, typescript, react, qiskit, mongodb</li>
+              <li>Language: intermediate Mandarin</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -115,8 +124,9 @@
             </p>
           </div>
           <p class="resume-text">
-            Curated backend infrastructure for understanding the organizations
-            distribution of donations
+            Built backend system for analyzing and reporting donation
+            distribution, enabling precise tracking and improved transparency in
+            organizational giving
           </p>
         </div>
 
@@ -124,13 +134,14 @@
           <div class="resume-header-row">
             <div>
               <h2 class="font-bold resume-text">shades</h2>
-              <p class="italic resume-text">SWE Intern</p>
+              <p class="italic resume-text">Software Engineer Intern</p>
             </div>
             <p class="resume-text">Summer 2023 - (Sole Intern) | Hybrid</p>
           </div>
           <p class="resume-text">
-            Increased user retention through integrating a full-stack game into
-            the mobile application
+            Increased user engagement 30% by building and integrating a
+            full-stack game into the mobile app, leading to higher user
+            retention rates
           </p>
         </div>
 
@@ -143,9 +154,8 @@
             <p class="resume-text">Fall 2022 - Present | PHL, PA</p>
           </div>
           <p class="resume-text">
-            managed frontend, backend, and design team with work done in react,
-            mongodb, nodejs, vercel. projects with Resilience Education,
-            Coinbase, shades, InstaHub.
+            Led teams across frontend, backend, and UI/UX to build scalable web
+            applications using React, MongoDB, Node.js, and Vercel
           </p>
         </div>
 
@@ -158,8 +168,9 @@
             <p class="resume-text">Summer 2022 - (Sole Intern) | SEA, WA</p>
           </div>
           <p class="resume-text">
-            Provided stock recommendation within photonics industry to partners
-            at the firm. Recommendation placed on watchlist.
+            Researched and delivered photonics industry stock recommendations to
+            firm partners, resulting in watchlist addition for investment
+            potential
           </p>
         </div>
 
@@ -174,15 +185,14 @@
             </p>
           </div>
           <p class="resume-text">
-            2021 (Hybrid) - Spent time as a member of the real estate investment
-            team looking for high returning real estate investments.
-            Participated with analysis and provided market research
-            recommendation to the real estate investment team.
+            2021 - Analyzed high-yield real estate investment opportunities and
+            delivered market research recommendations to guide strategic
+            investment decisions
           </p>
           <p class="resume-text">
-            2020 (Remote – first high school intern) - Conducted a rotational
-            internship through various investment divisions, which include
-            private & public equity, operations, and real estate.
+            2020 - Completed rotational internship across private equity, public
+            equity, operations, and real estate divisions, gaining diverse
+            investment experience
           </p>
         </div>
       </div>
@@ -199,36 +209,34 @@
 
           <div class="resume-box-list">
             <h3>Organizations</h3>
-            <p>Bloomberg Tech Lab</p>
+            <p>bloomberg tech lab</p>
             <p>ari global | climate tech</p>
-            <p>UC Irvine GATI TA</p>
+            <p>UC Irvine Gati TA</p>
+          </div>
+
+          <div class="resume-box-list">
+            <h3>Research</h3>
+            <p>delta-machine learning</p>
+            <p>semantic segmentation</p>
           </div>
 
           <div class="resume-box-list">
             <h3>Personal Exploration</h3>
             <p>python trading bot</p>
             <p>web scraper</p>
+            <p>custom html and css website</p>
           </div>
         </div>
-      </div>
-
-      <!-- SKILLS -->
-      <div class="resume-section">
-        <h1>Skills</h1>
-        <ul>
-          <li>Coding: python, typescript, react, qiskit, mongodb</li>
-          <li>Language: studied Mandarin for 5 years</li>
-        </ul>
       </div>
 
       <!-- RECOGNITION -->
       <div class="resume-section">
         <h1>Recognition</h1>
         <ul class="resume-list-vertical-line">
-          <li>Yale Young Global Scholars (Beijing, 2019)</li>
-          <li>We The Future Changemaker (Seattle, 2020)</li>
-          <li>UC Irvine GATI Visioneer (Irvine, 2023)</li>
-          <li>M&T Intern Fellowship Award (2023 & 2024)</li>
+          <li>Yale Young Global Scholars (Beijing)</li>
+          <li>We The Future Changemaker (Seattle)</li>
+          <li>UC Irvine GATI Visioneer (Irvine)</li>
+          <li>M&T Intern Fellowship Award (2x)</li>
         </ul>
       </div>
 
@@ -236,9 +244,9 @@
       <div class="resume-section">
         <h1>Community Service</h1>
         <ul class="resume-list-vertical-line">
-          <li>Global Service Learning, August 2019</li>
-          <li>Northwest African American Museum, 2018 – 2020</li>
-          <li>New Bethlehem Project (Homeless Shelter), 2017 - 2020</li>
+          <li>Global Service Learning (Tibet & Peru)</li>
+          <li>Northwest African American Museum</li>
+          <li>New Bethlehem Project (Homeless Shelter)</li>
         </ul>
       </div>
     </main>
@@ -246,7 +254,6 @@
       <a href="https://jeffhuang.com/designed_to_last/"
         >building pages to last</a
       >
-      <p>this is a custom pure html and css website desgined by me</p>
     </footer>
   </body>
 </html>

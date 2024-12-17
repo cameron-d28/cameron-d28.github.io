@@ -614,6 +614,10 @@ h2 {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .left-1\/2 {
   left: 50%;
 }
@@ -624,6 +628,16 @@ h2 {
 
 .m-0 {
   margin: 0px;
+}
+
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mb-4 {
@@ -676,6 +690,10 @@ h2 {
 
 .w-screen {
   width: 100vw;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
 }
 
 .-translate-x-1\/2 {
@@ -782,9 +800,18 @@ h2 {
   border-bottom-width: 1px;
 }
 
+.border-l {
+  border-left-width: 1px;
+}
+
 .border-black {
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
 .bg-black {
@@ -815,10 +842,6 @@ h2 {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
 }
 
 .pl-8 {
@@ -969,7 +992,6 @@ h2 {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  padding-bottom: 1rem;
 }
 
 .resume-item {
@@ -1210,9 +1232,4 @@ h2 {
     padding-left: 7rem;
     padding-right: 7rem;
   }
-}
-
-.\[\&_p\]\:text-sm p {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
