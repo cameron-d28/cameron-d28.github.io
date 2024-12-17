@@ -75,7 +75,7 @@
 /* resume page */
 
 .resume-section {
-  @apply w-full flex flex-col space-y-2 px-3 pb-4 border-b border-gray-300;
+  @apply w-full flex flex-col space-y-2 px-3 pb-2 border-b border-gray-300;
 }
 
 .resume-item {
@@ -84,10 +84,6 @@
 
 .resume-header-row {
   @apply flex flex-row justify-between items-center w-full;
-}
-
-.resume-text {
-  @apply text-sm;
 }
 
 .resume-box-list {
