@@ -696,6 +696,10 @@ h2 {
   flex: 1 1 0%;
 }
 
+.flex-\[2\] {
+  flex: 2;
+}
+
 .-translate-x-1\/2 {
   --tw-translate-x: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -842,6 +846,10 @@ h2 {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .pl-8 {
@@ -992,6 +1000,7 @@ h2 {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .resume-item {
@@ -1012,11 +1021,6 @@ h2 {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-}
-
-.resume-text {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 .resume-box-list {

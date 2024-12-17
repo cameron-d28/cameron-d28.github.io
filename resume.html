@@ -8,11 +8,20 @@
     <link rel="icon" href="public/website_pfp.png" type="image/png" />
   </head>
   <body
-    class="flex flex-col items-start text-sm"
+    class="flex flex-col w-full items-start text-md"
     style="font-family: 'Courier New', Courier, monospace"
   >
     <header class="resume-header">
-      <h1>Cameron Davis</h1>
+      <div class="flex items-center justify-center gap-2">
+        <h1>Cameron Davis</h1>
+        <a
+          href="public/cameron_davis_resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline text-sm"
+          >-> pdf</a
+        >
+      </div>
       <h3 class="text-sm">
         <!-- get a second phone number that goes here -->
         <a href="mailto:daviscam@wharton.upenn.edu" class="hover:underline"
@@ -28,7 +37,7 @@
         >
       </h3>
     </header>
-    <main class="resume-main">
+    <main class="w-full">
       <!-- EDUCATION SECTION -->
       <div class="resume-section">
         <h1>Education</h1>
@@ -57,11 +66,10 @@
         </div>
       </div>
 
-      <!-- COURSES -->
       <div class="resume-section">
         <div class="flex flex-row justify-between relative">
-          <!-- Left side: Coursework -->
-          <div class="flex-2">
+          <!-- COURSES -->
+          <div class="flex-[2]">
             <div class="flex flex-row items-center gap-2">
               <h1>Relevant Coursework</h1>
             </div>
