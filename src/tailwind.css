@@ -87,7 +87,7 @@
 }
 
 .resume-box-list {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center text-center;
 }
 
 .resume-box-list h3 {
