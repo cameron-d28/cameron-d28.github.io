@@ -6,5 +6,6 @@
 - change session data from being stored client side
 - change hard coded login
 - get protection from cross-site scripting
+- gargoyle like thing that focuses on you wherever 
 
 - dont let the pages behind login load before login
