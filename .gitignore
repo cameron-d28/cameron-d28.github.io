@@ -10,3 +10,4 @@ build/
 
 #hiden pages
 # src/hidden-figures.html
+package-lock.json
