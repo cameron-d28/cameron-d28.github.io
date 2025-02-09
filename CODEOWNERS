@@ -1,0 +1,19 @@
+# Format is: pattern  owner1 owner2 owner3
+
+# These owners will be the default owners for everything
+*       @cameron-d28
+
+# Owners for files in the src directory
+# /src/*  @tech-lead-username @senior-dev-username
+
+# Owner for JavaScript files
+# *.js    @js-expert-username
+
+# Owner for documentation
+# /docs/* @documentation-team
+
+# Multiple owners for a specific file
+# /config/database.yml    @dba-username @devops-username
+
+# You can also use email addresses instead of usernames
+*.go    dev@company.com
