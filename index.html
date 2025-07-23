@@ -8,61 +8,66 @@
     <link rel="icon" href="public/website_pfp.png" type="image/png" />
   </head>
   <body style="font-family: 'Courier New', Courier, monospace">
-    <header>
-      <h1>Cameron Davis</h1>
-      <p class="responsive-text">
-        the best voyage is one of 1,000 tacks ~ emerson
+    <!-- Canvas Intro Animation Overlay -->
+    <div id="intro-canvas-container" class="fixed inset-0 w-full h-full z-10">
+      <canvas id="intro-canvas" class="w-full h-full block"></canvas>
+      <button
+        id="skip-intro"
+        class="absolute top-4 right-4 text-white text-sm opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-white/30 px-3 py-1 rounded z-20"
+      >
+        Skip Intro
+      </button>
+    </div>
+    <main
+      class="flex flex-col w-full h-full justify-center items-center relative z-0"
+      style="padding: 100px; box-sizing: border-box"
+    >
+      <h1 class="text-center">Cameron Davis</h1>
+      <p class="responsive-text text-center">
+        <span class="hidden md:inline"
+          >the best voyage is one of 1,000 tacks ~ emerson</span
+        >
+        <span class="md:hidden">carpe diem</span>
       </p>
-    </header>
-    <main class="main">
-      <div class="section md:col-span-2">
-        <h1 class="section-header">about</h1>
-        <p class="text-sm px-4 md:px-28">
-          Studying at Penn Engineering and Wharton - through the Jerome Fisher
-          M&T program - motivated me to be a part of creating technologies that
-          transform how we interact with the world, focusing on lasting impact
-          rather than fleeting solutions. As an undergrad I touched on Quantum
-          Computing, Robotics, and Artificial Intelligence at a graduate level.
-        </p>
-      </div>
-      <div class="section">
-        <h1 class="section-header">personal</h1>
-        <ul class="list-styling">
-          <li><a href="https://github.com/cameron-d28">github</a></li>
-          <li><a href="work.html">work experience</a></li>
-        </ul>
-      </div>
-      <div class="section">
-        <h1 class="section-header">learn</h1>
-        <ul class="list-styling">
-          <li><a href="https://press.stripe.com/">stripe press</a></li>
-          <li>acquired podcast</li>
-        </ul>
-      </div>
-      <div class="section">
-        <h1 class="section-header">the future</h1>
-        <ul class="list-styling">
-          <li><a href="future/blockchain.html">blockchain</a></li>
-          <li><a href="future/robotics.html">robotics</a></li>
-          <li><a href="future/art.html">art</a></li>
-          <li><a href="future/ai.html">artificial intelligence</a></li>
-          <li><a href="future/quantum.html">quantum</a></li>
-          <li><a href="future/nanotech.html">nanotech</a></li>
-        </ul>
-      </div>
-      <div class="section">
-        <h1 class="section-header">the past</h1>
-        <ul class="list-styling">
-          <li><a href="people.html">people</a></li>
-          <li><a href="words.html">words</a></li>
-          <li>eras</li>
-        </ul>
-      </div>
+      <a
+        href="home.html"
+        id="home-link"
+        class="opacity-0 transition-opacity duration-500 mt-8 text-lg hover:underline"
+        style="display: none"
+      >
+        enter site →
+      </a>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const homeLink = document.getElementById("home-link");
+
+          // Show link when intro is skipped
+          document
+            .getElementById("skip-intro")
+            .addEventListener("click", () => {
+              homeLink.style.display = "block";
+              setTimeout(() => homeLink.classList.add("opacity-100"), 10);
+            });
+
+          // Show link after 30 seconds
+          setTimeout(() => {
+            if (homeLink.style.display === "none") {
+              homeLink.style.display = "block";
+              setTimeout(() => homeLink.classList.add("opacity-100"), 10);
+            }
+          }, 12000);
+        });
+      </script>
     </main>
     <footer>
       <a href="https://jeffhuang.com/designed_to_last/"
         >building pages to last</a
       >
     </footer>
+
+    <!-- JavaScript for Canvas Animation -->
+    <script src="js/flicker-distribution.js"></script>
+    <script src="js/canvas-intro.js"></script>
   </body>
 </html>

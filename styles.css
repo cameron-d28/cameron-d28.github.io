@@ -603,15 +603,19 @@ h2 {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 3.5vw;
+  font-size: 2s.5vw;
 }
 
 @media (min-width: 768px) {
   .responsive-text {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
-    font-size: 3vw;
+    font-size: 2vw;
   }
+}
+
+.fixed {
+  position: fixed;
 }
 
 .absolute {
@@ -622,12 +626,36 @@ h2 {
   position: relative;
 }
 
+.inset-0 {
+  inset: 0px;
+}
+
 .left-1\/2 {
   left: 50%;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
 .top-1\/2 {
   top: 50%;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .m-0 {
@@ -650,6 +678,10 @@ h2 {
 
 .ml-0 {
   margin-left: 0px;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .mt-auto {
@@ -720,6 +752,10 @@ h2 {
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .grid-cols-1 {
@@ -804,6 +840,10 @@ h2 {
   white-space: nowrap;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -828,6 +868,10 @@ h2 {
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+
+.border-white\/30 {
+  border-color: rgb(255 255 255 / 0.3);
 }
 
 .bg-black {
@@ -860,6 +904,11 @@ h2 {
   padding-right: 2rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -882,8 +931,8 @@ h2 {
   line-height: 2.25rem;
 }
 
-.text-\[3vw\] {
-  font-size: 3vw;
+.text-\[2vw\] {
+  font-size: 2vw;
 }
 
 .text-lg {
@@ -926,6 +975,28 @@ h2 {
 
 .underline {
   text-decoration-line: underline;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
 }
 
 /* global */
@@ -1254,9 +1325,21 @@ h2 {
   text-decoration-line: underline;
 }
 
+.hover\:opacity-100:hover {
+  opacity: 1;
+}
+
 @media (min-width: 768px) {
   .md\:col-span-2 {
     grid-column: span 2 / span 2;
+  }
+
+  .md\:inline {
+    display: inline;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:grid-cols-3 {
