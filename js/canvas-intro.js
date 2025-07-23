@@ -11,7 +11,7 @@ class CanvasIntroController {
     this.animationId = null;
     this.startTime = null;
     this.isRunning = false;
-    this.pixelSize = 10; // Size of each "pixel" in the effect
+    this.pixelSize = 2; // Size of each "pixel" in the effect
 
     this.init();
   }
