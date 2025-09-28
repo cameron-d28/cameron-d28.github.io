@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis ~ Websites</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="public/website_pfp.png" type="image/png" />
+  </head>
+  <body style="font-family: 'Courier New', Courier, monospace">
+    <header class="list-page-header">
+      <h1>litany of websites</h1>
+      <p class="underline text-sm"><a href="home.html">back</a></p>
+    </header>
+    <main class="list-page-main">
+      <ul>
+        <li class="w-full">
+          <a href="https://diversatech.co"
+            >diversatech - technical consulting club</a
+          >
+          <!-- eventually include iframes of size 280px v 160px and they will show the logo of websites
+           this will mean that websites, when extremeley small, should display just their centered logo -->
+        </li>
+        <li>
+          <a href="https://nadnav.com">nadnav - retail fabric shop</a>
+        </li>
+      </ul>
+    </main>
+
+    <style>
+      .website-preview {
+        margin-top: 0.5rem;
+        width: 280px;
+        height: 160px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #e5e7eb;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .website-preview iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        transform: scale(0.7);
+        transform-origin: 0 0;
+        width: 142.86%;
+        height: 142.86%;
+      }
+
+      @media (max-width: 768px) {
+        .website-preview {
+          width: 240px;
+          height: 135px;
+        }
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const iframes = document.querySelectorAll(".website-preview iframe");
+
+        iframes.forEach((iframe) => {
+          iframe.addEventListener("error", function () {
+            this.parentElement.style.display = "none";
+          });
+
+          iframe.addEventListener("load", function () {
+            try {
+              if (!this.contentDocument) {
+                this.parentElement.style.display = "none";
+              }
+            } catch (e) {
+              this.parentElement.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/"
+        >building pages to last</a
+      >
+    </footer>
+  </body>
+</html>
