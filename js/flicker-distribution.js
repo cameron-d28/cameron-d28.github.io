@@ -26,7 +26,7 @@ class FlickerDistribution {
     this.centerY = centerY;
 
     // Effect parameters - customize these for different behaviors
-    this.totalDuration = 10000; // 10 seconds total effect time
+    this.totalDuration = 8000; // 10 seconds total effect time
     this.fadeOutDuration = 2000; // 2 seconds to fade to transparency
     this.irregularityFactor = 0.3; // How much Perlin noise affects boundaries (0-1)
     this.contagionStrength = 0.1; // How much neighbors influence stopping (0-1)

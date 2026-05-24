@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>memento mori ~ wyrd</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>memento mori ~ wyrd</h1>
+
+<div class="toggle" role="tablist">
+  <button data-view="weeks" aria-pressed="true">weeks</button>
+  <button data-view="years" aria-pressed="false">years</button>
+  <button data-view="days" aria-pressed="false">days</button>
+</div>
+
+<div id="grid" class="grid grid--weeks"></div>
+
+<p class="footer"><a href="journal.html">journal &rarr;</a></p>
+
+<div id="tooltip" role="tooltip"></div>
+
+<script>
+  // ─── edit these ─────────────────────────────────────────────────────
+  const BIRTHDATE = new Date('2000-01-01'); // ← your birthdate (UTC)
+  const LIFESPAN_YEARS = 70;
+  // ────────────────────────────────────────────────────────────────────
+
+  const MS_DAY = 86400000;
+  const MS_WEEK = MS_DAY * 7;
+  const MS_YEAR = MS_DAY * 365.25;
+
+  const grid = document.getElementById('grid');
+  const tooltip = document.getElementById('tooltip');
+  const toggle = document.querySelector('.toggle');
+  const now = new Date();
+
+  function isoWeekKey(date) {
+    const utc = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    const day = utc.getUTCDay() || 7;
+    utc.setUTCDate(utc.getUTCDate() + 4 - day);
+    const yearStart = new Date(Date.UTC(utc.getUTCFullYear(), 0, 1));
+    const week = Math.ceil((((utc - yearStart) / MS_DAY) + 1) / 7);
+    return utc.getUTCFullYear() + '-W' + String(week).padStart(2, '0');
+  }
+
+  function journaledWeekSet() {
+    const s = new Set();
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('ajal:')) s.add(k.slice(5));
+    }
+    return s;
+  }
+
+  function fmtDate(d) {
+    return d.toISOString().slice(0, 10);
+  }
+
+  const VIEWS = {
+    weeks: { count: LIFESPAN_YEARS * 52,  ms: MS_WEEK, label: 'week',  marksJournaled: true },
+    years: { count: LIFESPAN_YEARS,       ms: MS_YEAR, label: 'year',  marksJournaled: false },
+    days:  { count: LIFESPAN_YEARS * 365, ms: MS_DAY,  label: 'day',   marksJournaled: true },
+  };
+
+  function render(viewName) {
+    const view = VIEWS[viewName];
+    grid.className = 'grid grid--' + viewName;
+    grid.dataset.view = viewName;
+    grid.replaceChildren();
+
+    const journaled = view.marksJournaled ? journaledWeekSet() : null;
+    const frag = document.createDocumentFragment();
+    const birthMs = BIRTHDATE.getTime();
+    const nowMs = now.getTime();
+
+    for (let i = 0; i < view.count; i++) {
+      const startMs = birthMs + i * view.ms;
+      const endMs = startMs + view.ms;
+
+      let cls = 'dot ';
+      if (endMs < nowMs) {
+        cls += 'dot--past';
+        if (journaled && journaled.has(isoWeekKey(new Date(startMs)))) cls += ' dot--journaled';
+      } else if (startMs <= nowMs) {
+        cls += 'dot--current';
+      } else {
+        cls += 'dot--future';
+      }
+
+      const dot = document.createElement('div');
+      dot.className = cls;
+      dot.dataset.i = i;
+      frag.appendChild(dot);
+    }
+
+    grid.appendChild(frag);
+  }
+
+  // Event delegation — one listener, no matter how many dots.
+  grid.addEventListener('mousemove', (e) => {
+    const dot = e.target.closest('.dot');
+    if (!dot) { tooltip.classList.remove('visible'); return; }
+    const view = VIEWS[grid.dataset.view];
+    const i = +dot.dataset.i;
+    const date = new Date(BIRTHDATE.getTime() + i * view.ms);
+    tooltip.textContent = fmtDate(date) + ' · ' + view.label + ' ' + (i + 1);
+    tooltip.style.left = (e.clientX + 12) + 'px';
+    tooltip.style.top = (e.clientY + 12) + 'px';
+    tooltip.classList.add('visible');
+  });
+  grid.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+
+  toggle.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    toggle.querySelectorAll('button').forEach((b) => {
+      b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+    });
+    render(btn.dataset.view);
+  });
+
+  render('weeks');
+</script>
+</body>
+</html>
