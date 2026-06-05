@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis ~ terminal</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="public/website_pfp.png" type="image/png" />
+    <style>
+      /* raw black-and-white terminal: no window chrome, full-bleed.
+         neofetch-style layout — typewriter art left, page list right. */
+      :root {
+        --bg: #000;
+        --fg: #e6e6e6;
+        --dim: #6b6b6b;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        padding: 1.6rem 1.8rem;
+      }
+      .prompt {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+      }
+      .prompt .dim {
+        color: var(--dim);
+      }
+      .body {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding-top: 0.5rem;
+      }
+      .art {
+        flex: 1 1 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .art pre {
+        font-size: 12px;
+        line-height: 1.15;
+        white-space: pre;
+      }
+      .info {
+        flex: 1 1 320px;
+        font-size: 0.95rem;
+      }
+      .info .head {
+        font-weight: bold;
+      }
+      .info .rule {
+        color: var(--dim);
+      }
+      .nav {
+        list-style: none;
+        padding: 0;
+        margin: 0.3rem 0 0;
+      }
+      .nav li {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .nav .k {
+        display: inline-block;
+        width: 5.5rem;
+        font-weight: bold;
+      }
+      .nav a {
+        color: var(--fg);
+      }
+      .nav a:hover {
+        text-decoration: underline;
+      }
+      /* greyscale nod to the neofetch palette swatches */
+      .palette {
+        display: flex;
+        margin-top: 0.9rem;
+      }
+      .palette span {
+        width: 22px;
+        height: 14px;
+      }
+      footer {
+        text-align: left;
+      }
+      footer a {
+        color: var(--dim);
+      }
+    </style>
+  </head>
+  <body style="font-family: 'Courier New', Courier, monospace">
+    <div class="prompt">
+      cameron@portfolio:<span class="dim">~</span>$ ./navigate
+    </div>
+
+    <div class="body">
+      <div class="art">
+        <pre>
+       .-------------------.
+       | .---------------. |
+       | |               | |
+       | |               | |
+    .--| |               | |--.
+   |   | '---------------' |   |
+   |   '-------------------'   |
+   |   _   _   _   _   _   _   |
+   |  (.) (.) (.) (.) (.) (.)  |
+   '-/  : : : : : : : : :  \-' a
+     '----._____________.----'</pre>
+      </div>
+
+      <div class="info">
+        <div class="head">cameron@portfolio</div>
+        <div class="rule">-------------------</div>
+        <ul class="nav">
+          <li><span class="k">city</span><a href="city.html">city.html</a></li>
+          <li><span class="k">home</span><a href="home.html">home.html</a></li>
+          <li><span class="k">work</span><a href="work.html">work.html</a></li>
+          <li><span class="k">websites</span><a href="websites.html">websites.html</a></li>
+          <li><span class="k">people</span><a href="people.html">people.html</a></li>
+          <li><span class="k">words</span><a href="words.html">words.html</a></li>
+          <li><span class="k">future</span><a href="future/">future/</a></li>
+          <li><span class="k">peruse</span><a href="peruse.html">peruse.html</a></li>
+          <li><span class="k">locations</span><a href="locations/">locations/</a></li>
+          <li><span class="k">recipes</span><a href="recipes.html">recipes.html</a></li>
+          <li><span class="k">resume</span><a href="resume.html">resume.html</a></li>
+          <li><span class="k">github</span><a href="https://github.com/cameron-d28">github.com/cameron-d28</a></li>
+        </ul>
+        <div class="palette">
+          <span style="background: #2b2b2b"></span>
+          <span style="background: #555"></span>
+          <span style="background: #7f7f7f"></span>
+          <span style="background: #aaa"></span>
+          <span style="background: #d4d4d4"></span>
+          <span style="background: #fff"></span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/"
+        >building pages to last</a
+      >
+    </footer>
+  </body>
+</html>
