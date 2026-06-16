@@ -558,6 +558,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
 }
 
 main {
@@ -607,7 +608,7 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 2s.5vw;
+  font-size: 2.5vw;
 }
 
 @media (min-width: 768px) {
@@ -626,44 +627,8 @@ a {
   position: fixed;
 }
 
-.absolute {
-  position: absolute;
-}
-
 .relative {
   position: relative;
-}
-
-.inset-0 {
-  inset: 0px;
-}
-
-.left-1\/2 {
-  left: 50%;
-}
-
-.right-4 {
-  right: 1rem;
-}
-
-.top-1\/2 {
-  top: 50%;
-}
-
-.top-4 {
-  top: 1rem;
-}
-
-.z-0 {
-  z-index: 0;
-}
-
-.z-10 {
-  z-index: 10;
-}
-
-.z-20 {
-  z-index: 20;
 }
 
 .m-0 {
@@ -673,6 +638,11 @@ a {
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .my-2 {
@@ -686,6 +656,10 @@ a {
 
 .ml-0 {
   margin-left: 0px;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .mt-8 {
@@ -716,8 +690,12 @@ a {
   height: 1.5rem;
 }
 
-.h-\[60\%\] {
-  height: 60%;
+.h-\[135px\] {
+  height: 135px;
+}
+
+.h-\[160px\] {
+  height: 160px;
 }
 
 .h-full {
@@ -728,16 +706,24 @@ a {
   height: 100vh;
 }
 
-.w-\[80\%\] {
-  width: 80%;
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.w-\[240px\] {
+  width: 240px;
+}
+
+.w-\[280px\] {
+  width: 280px;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-screen {
-  width: 100vw;
 }
 
 .flex-1 {
@@ -748,38 +734,16 @@ a {
   flex: 2;
 }
 
-.-translate-x-1\/2 {
-  --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.-translate-y-1\/2 {
-  --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.cursor-pointer {
-  cursor: pointer;
 }
 
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -883,10 +847,6 @@ a {
   border-color: rgb(75 85 99 / var(--tw-border-opacity, 1));
 }
 
-.border-white\/30 {
-  border-color: rgb(255 255 255 / 0.3);
-}
-
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
@@ -897,9 +857,9 @@ a {
   background-color: rgb(107 114 128 / var(--tw-bg-opacity, 1));
 }
 
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .px-3 {
@@ -920,11 +880,6 @@ a {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
 }
 
 .py-2 {
@@ -1009,28 +964,14 @@ a {
   text-decoration-line: underline;
 }
 
-.opacity-100 {
-  opacity: 1;
-}
-
-.opacity-70 {
-  opacity: 0.7;
-}
-
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+.outline {
+  outline-style: solid;
 }
 
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.transition-opacity {
-  transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1062,10 +1003,20 @@ a {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+body.ajal .main {
+  display: grid;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
 @media (min-width: 768px) {
   .main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+.list-button:hover {
+  text-decoration-line: underline;
 }
 
 .list-styling > li {
@@ -1208,6 +1159,12 @@ a {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
 }
 
+body.ajal .hidden-main {
+  display: grid;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
 .hidden-box {
   height: 100%;
   width: 100%;
@@ -1274,6 +1231,20 @@ a {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+/* inspirations index — pages stacked in a centered list */
+
+.inspirations-home {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .future-main {
@@ -1373,10 +1344,354 @@ a {
   gap: 1rem;
 }
 
+body.ajal .future-tech-div {
+  display: grid;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
 @media (min-width: 768px) {
   .future-tech-div {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+/* websites page — iframe preview (class-scoped, no leakage) */
+
+.website-preview {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  height: 160px;
+  width: 280px;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  border: 1px solid #e5e7eb;
+}
+
+.website-preview iframe {
+  border-style: none;
+  width: 142.86%;
+  height: 142.86%;
+  transform: scale(0.7);
+  transform-origin: 0 0;
+}
+
+@media (max-width: 768px) {
+  .website-preview {
+    height: 135px;
+    width: 240px;
+  }
+}
+
+/* terminal page — neofetch theme (scoped under body.terminal) */
+
+body.terminal {
+  --bg: #000;
+  --fg: #e6e6e6;
+  --dim: #6b6b6b;
+  background: var(--bg);
+  color: var(--fg);
+  padding: 1.6rem 1.8rem;
+}
+
+body.terminal .prompt {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+body.terminal .prompt .dim {
+  color: var(--dim);
+}
+
+body.terminal .body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 0.5rem;
+}
+
+body.terminal .art {
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.terminal .art pre {
+  font-size: 12px;
+  line-height: 1.15;
+  white-space: pre;
+}
+
+body.terminal .info {
+  flex: 1 1 320px;
+  font-size: 0.95rem;
+}
+
+body.terminal .info .head {
+  font-weight: bold;
+}
+
+body.terminal .info .rule {
+  color: var(--dim);
+}
+
+body.terminal .nav {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+}
+
+body.terminal .nav li {
+  display: flex;
+  gap: 0.5rem;
+}
+
+body.terminal .nav .k {
+  display: inline-block;
+  width: 5.5rem;
+  font-weight: bold;
+}
+
+body.terminal .nav a {
+  color: var(--fg);
+}
+
+body.terminal .nav a:hover {
+  text-decoration: underline;
+}
+
+body.terminal .palette {
+  display: flex;
+  margin-top: 0.9rem;
+}
+
+body.terminal .palette span {
+  width: 22px;
+  height: 14px;
+}
+
+body.terminal footer {
+  text-align: left;
+}
+
+body.terminal footer a {
+  color: var(--dim);
+}
+
+/* ajal page — memento mori (scoped under body.ajal) */
+
+body.ajal {
+  --bg: #fafaf9;
+  --ink: #111;
+  --gray: #999;
+  --border: #ddd;
+  --serif: Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, Menlo, Monaco, monospace;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  overflow-x: hidden;
+  padding: 3rem 1.5rem;
+}
+
+body.ajal.journal-page {
+  padding: 4rem 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+body.ajal .mono {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+body.ajal h1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 0 0 2rem;
+  letter-spacing: -0.01em;
+}
+
+body.ajal a {
+  color: inherit;
+}
+
+body.ajal .footer {
+  margin-top: 3rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+body.ajal .footer a {
+  color: var(--gray);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+body.ajal .footer a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+body.ajal .toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+body.ajal .toggle button {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+  color: var(--gray);
+}
+
+body.ajal .toggle button[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+body.ajal .grid {
+  display: grid;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+body.ajal .grid--weeks {
+  grid-template-columns: repeat(auto-fill, minmax(16px, 1fr));
+  gap: 2px;
+}
+
+body.ajal .grid--years {
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 4px;
+}
+
+body.ajal .grid--days {
+  grid-template-columns: repeat(auto-fill, minmax(6px, 1fr));
+  gap: 1px;
+}
+
+body.ajal .dot {
+  aspect-ratio: 1;
+  border-radius: 1px;
+}
+
+body.ajal .dot--past {
+  background: var(--ink);
+}
+
+body.ajal .dot--current {
+  background: var(--gray);
+}
+
+body.ajal .dot--future {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+body.ajal .dot--journaled {
+  outline: 1px solid var(--ink);
+  outline-offset: 1px;
+}
+
+body.ajal #tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.3rem 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  border-radius: 2px;
+  opacity: 0;
+  z-index: 10;
+  white-space: nowrap;
+  transition: opacity 0.08s;
+}
+
+body.ajal #tooltip.visible {
+  opacity: 1;
+}
+
+/* home page — gradient tile grid (scoped under body.home) */
+
+body.home {
+  background: #f5f5f4;
+}
+
+body.home main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+body.home .home-grid {
+  width: 100%;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* each row owns its shade via --shade; tiles read it, so color never depends on tile count */
+
+body.home .home-row {
+  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+body.home .home-tile {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--shade);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: #0d0d0d;
+}
+
+/* merge boxes by spanning columns; span drops the square ratio so the box matches the row height */
+
+body.home .home-tile.span-2 {
+  grid-column: span 2;
+  aspect-ratio: auto;
+}
+
+body.home .home-tile.span-3 {
+  grid-column: span 3;
+  aspect-ratio: auto;
+}
+
+body.home .home-tile.span-4 {
+  grid-column: span 4;
+  aspect-ratio: auto;
+}
+
+body.home .home-tile.on-dark {
+  color: #f5f5f4;
+}
+
+/* linked boxes jump on hover */
+
+body.home .home-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+body.home .home-link:hover {
+  transform: translateY(-6px);
 }
 
 .hover\:-translate-y-2:hover {
@@ -1407,15 +1722,7 @@ a {
   text-decoration-line: underline;
 }
 
-.hover\:opacity-100:hover {
-  opacity: 1;
-}
-
 @media (min-width: 768px) {
-  .md\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
   .md\:inline {
     display: inline;
   }
@@ -1430,10 +1737,5 @@ a {
 
   .md\:flex-row {
     flex-direction: row;
-  }
-
-  .md\:px-28 {
-    padding-left: 7rem;
-    padding-right: 7rem;
   }
 }

@@ -4,23 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cameron davis</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="public/website_pfp.png" type="image/png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/public/website_pfp.png" type="image/png" />
   </head>
-  <body style="font-family: 'Courier New', Courier, monospace">
-    <!-- Canvas Intro Animation Overlay -->
-    <div id="intro-canvas-container" class="fixed inset-0 w-full h-full z-10">
-      <canvas id="intro-canvas" class="w-full h-full block"></canvas>
-      <!-- <button
-        id="skip-intro"
-        class="absolute top-4 right-4 text-white text-sm opacity-70 hover:opacity-100 transition-opacity cursor-pointer border border-white/30 px-3 py-1 rounded z-20"
-      >
-        Skip Intro
-      </button> -->
-    </div>
-    <main
-      class="flex flex-col w-full h-full justify-center items-center relative z-0"
-    >
+  <body>
+    <main class="flex flex-col w-full h-screen justify-center items-center">
       <h1 class="text-center">Cameron Davis</h1>
       <p class="responsive-text text-center">
         <span class="hidden md:inline"
@@ -28,40 +16,10 @@
         >
         <span class="md:hidden">carpe diem</span>
       </p>
-      <a href="/city.html" class="mt-8 text-lg hover:underline">
-        enter site →
-      </a>
-
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const homeLink = document.getElementById("home-link");
-
-          // Show link when intro is skipped
-          document
-            .getElementById("skip-intro")
-            .addEventListener("click", () => {
-              homeLink.style.display = "block";
-              setTimeout(() => homeLink.classList.add("opacity-100"), 10);
-            });
-
-          // Show link after 30 seconds
-          setTimeout(() => {
-            if (homeLink.style.display === "none") {
-              homeLink.style.display = "block";
-              setTimeout(() => homeLink.classList.add("opacity-100"), 10);
-            }
-          }, 12000);
-        });
-      </script>
+      <a href="/home/" class="mt-8 text-lg hover:underline">enter site →</a>
     </main>
     <footer>
-      <a href="https://jeffhuang.com/designed_to_last/"
-        >building pages to last</a
-      >
+      <a href="https://jeffhuang.com/designed_to_last/">building pages to last</a>
     </footer>
-
-    <!-- JavaScript for Canvas Animation -->
-    <script src="js/flicker-distribution.js"></script>
-    <script src="js/canvas-intro.js"></script>
   </body>
 </html>
