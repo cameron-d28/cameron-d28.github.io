@@ -5,6 +5,7 @@
 @layer components {
   body {
     @apply flex flex-col min-h-screen;
+    font-family: "Courier New", Courier, monospace;
   }
 
   main {
@@ -30,14 +31,18 @@
     @apply text-xl font-semibold;
   }
 
+  a {
+    @apply rounded-lg;
+  }
+
   .responsive-text {
     @apply w-full m-0 whitespace-nowrap overflow-hidden text-ellipsis;
-    font-size: 3.5vw;
+    font-size: 2.5vw;
   }
 
   @screen md {
     .responsive-text {
-      @apply text-[3vw] px-10;
+      @apply text-[2vw] px-10;
     }
   }
 }
@@ -52,12 +57,19 @@
   @apply text-3xl;
 }
 
+.back-button {
+  @apply underline text-sm;
+}
+
 /* # main page */
 
 .main {
   @apply grid grid-cols-1 md:grid-cols-2;
 }
 
+.list-button {
+  @apply hover:underline;
+}
 .list-styling > li {
   @apply h-6 hover:text-black; /* can have text appear only when hovered */
 }
@@ -140,9 +152,20 @@
 }
 
 /* future page */
+.future-home {
+  @apply flex flex-col w-full h-full align-middle justify-between py-20 px-10;
+}
 
+.future-select {
+  @apply flex py-2 px-4 text-center justify-center bg-gray-500
+  border-gray-600 border-2 hover:-translate-y-2 hover:bg-white;
+}
+/* inspirations index — pages stacked in a centered list */
+.inspirations-home {
+  @apply flex flex-col items-center justify-center gap-4 w-full min-h-screen px-10;
+}
 .future-main {
-  @apply flex flex-col text-center px-5 pt-3;
+  @apply flex flex-col justify-center text-center px-5 pt-3;
 }
 
 .future-main h2 {
@@ -178,4 +201,296 @@
 .quadrant {
   @apply flex items-center justify-center text-2xl font-bold border border-black 
   bg-black text-white hover:bg-white hover:text-black;
+}
+
+.future-tech-div {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 items-center;
+}
+
+/* websites page — iframe preview (class-scoped, no leakage) */
+
+.website-preview {
+  @apply mt-2 w-[280px] h-[160px] mx-auto overflow-hidden rounded;
+  border: 1px solid #e5e7eb;
+}
+
+.website-preview iframe {
+  @apply border-none;
+  width: 142.86%;
+  height: 142.86%;
+  transform: scale(0.7);
+  transform-origin: 0 0;
+}
+
+@media (max-width: 768px) {
+  .website-preview {
+    @apply w-[240px] h-[135px];
+  }
+}
+
+/* terminal page — neofetch theme (scoped under body.terminal) */
+
+body.terminal {
+  --bg: #000;
+  --fg: #e6e6e6;
+  --dim: #6b6b6b;
+  background: var(--bg);
+  color: var(--fg);
+  padding: 1.6rem 1.8rem;
+}
+body.terminal .prompt {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+body.terminal .prompt .dim {
+  color: var(--dim);
+}
+body.terminal .body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 0.5rem;
+}
+body.terminal .art {
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.terminal .art pre {
+  font-size: 12px;
+  line-height: 1.15;
+  white-space: pre;
+}
+body.terminal .info {
+  flex: 1 1 320px;
+  font-size: 0.95rem;
+}
+body.terminal .info .head {
+  font-weight: bold;
+}
+body.terminal .info .rule {
+  color: var(--dim);
+}
+body.terminal .nav {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+}
+body.terminal .nav li {
+  display: flex;
+  gap: 0.5rem;
+}
+body.terminal .nav .k {
+  display: inline-block;
+  width: 5.5rem;
+  font-weight: bold;
+}
+body.terminal .nav a {
+  color: var(--fg);
+}
+body.terminal .nav a:hover {
+  text-decoration: underline;
+}
+body.terminal .palette {
+  display: flex;
+  margin-top: 0.9rem;
+}
+body.terminal .palette span {
+  width: 22px;
+  height: 14px;
+}
+body.terminal footer {
+  text-align: left;
+}
+body.terminal footer a {
+  color: var(--dim);
+}
+
+/* ajal page — memento mori (scoped under body.ajal) */
+
+body.ajal {
+  --bg: #fafaf9;
+  --ink: #111;
+  --gray: #999;
+  --border: #ddd;
+  --serif: Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, Menlo, Monaco, monospace;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  overflow-x: hidden;
+  padding: 3rem 1.5rem;
+}
+body.ajal.journal-page {
+  padding: 4rem 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+body.ajal .mono {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+body.ajal h1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 0 0 2rem;
+  letter-spacing: -0.01em;
+}
+body.ajal a {
+  color: inherit;
+}
+body.ajal .footer {
+  margin-top: 3rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+body.ajal .footer a {
+  color: var(--gray);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+body.ajal .footer a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+body.ajal .toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+body.ajal .toggle button {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+  color: var(--gray);
+}
+body.ajal .toggle button[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+body.ajal .grid {
+  display: grid;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+body.ajal .grid--weeks {
+  grid-template-columns: repeat(auto-fill, minmax(16px, 1fr));
+  gap: 2px;
+}
+body.ajal .grid--years {
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 4px;
+}
+body.ajal .grid--days {
+  grid-template-columns: repeat(auto-fill, minmax(6px, 1fr));
+  gap: 1px;
+}
+body.ajal .dot {
+  aspect-ratio: 1;
+  border-radius: 1px;
+}
+body.ajal .dot--past {
+  background: var(--ink);
+}
+body.ajal .dot--current {
+  background: var(--gray);
+}
+body.ajal .dot--future {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+body.ajal .dot--journaled {
+  outline: 1px solid var(--ink);
+  outline-offset: 1px;
+}
+body.ajal #tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.3rem 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  border-radius: 2px;
+  opacity: 0;
+  z-index: 10;
+  white-space: nowrap;
+  transition: opacity 0.08s;
+}
+body.ajal #tooltip.visible {
+  opacity: 1;
+}
+
+/* home page — gradient tile grid (scoped under body.home) */
+
+body.home {
+  background: #f5f5f4;
+}
+body.home main {
+  @apply flex justify-center p-4;
+}
+/* tile size fits whichever axis is tighter so the grid never needs scrolling:
+   width-bound on tall/skinny viewports, height-bound on short/wide ones */
+body.home .home-grid {
+  --gap: 0.5rem;
+  --reserve: 6rem; /* footer + vertical padding kept off the grid */
+  --tile: min(
+    (100vw - 2rem - 7 * var(--gap)) / 8,
+    (100vh - var(--reserve) - 6 * var(--gap)) / 7
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gap);
+  width: 100%;
+  height: calc(100vh - var(--reserve));
+}
+/* each row owns its shade via --shade; tiles read it, so color never depends on tile count.
+   space-between spreads columns when the grid is height-bound and narrower than the viewport */
+body.home .home-row {
+  display: grid;
+  grid-template-columns: repeat(8, var(--tile));
+  justify-content: space-between;
+  gap: var(--gap);
+}
+body.home .home-tile {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--shade);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  color: #0d0d0d;
+}
+/* merge boxes by spanning columns; span drops the square ratio so the box matches the row height */
+body.home .home-tile.span-2 {
+  grid-column: span 2;
+  aspect-ratio: auto;
+}
+body.home .home-tile.span-3 {
+  grid-column: span 3;
+  aspect-ratio: auto;
+}
+body.home .home-tile.span-4 {
+  grid-column: span 4;
+  aspect-ratio: auto;
+}
+body.home .home-tile.on-dark {
+  color: #f5f5f4;
+}
+/* linked boxes jump on hover */
+body.home .home-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+body.home .home-link:hover {
+  transform: translateY(-6px);
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/public/website_pfp.png" type="image/png" />
+  </head>
+  <body class="home">
+    <!-- Gradient tile grid (white → black through grays, one green-tinted row).
+         Each row carries its shade via --shade. A box is square by default;
+         add span-2/3/4 to merge columns into one box. Drop a label inside any box
+         (use on-dark for light text on the dark rows). Rows always sum to 8 columns. -->
+    <main>
+      <div class="home-grid">
+        <div class="home-row" style="--shade:#ffffff">
+          <div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div>
+        </div>
+        <div class="home-row" style="--shade:#e2e2e2">
+          <div class="home-tile"></div><div class="home-tile"></div><a href="/about/" class="home-tile span-2 home-link">about</a><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div>
+        </div>
+        <div class="home-row" style="--shade:#c2c2c2">
+          <div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><a href="https://github.com/cameron-d28" target="_blank" rel="noopener noreferrer" class="home-tile home-link"><img src="/public/github_logo.png" alt="GitHub" class="w-2/3 object-contain" /></a><div class="home-tile"></div><div class="home-tile"></div>
+        </div>
+        <div class="home-row" style="--shade:#989898">
+          <div class="home-tile"></div><a href="/resume/" class="home-tile span-2 home-link">resume</a><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div>
+        </div>
+        <div class="home-row" style="--shade:#5e5e5e">
+          <div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><a href="/inspirations/" class="home-tile span-3 on-dark home-link">inspirations</a><div class="home-tile"></div>
+        </div>
+        <div class="home-row" style="--shade:#2f3a2f">
+          <div class="home-tile"></div><div class="home-tile"></div><a href="/websites/" class="home-tile span-2 on-dark home-link">websites</a><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div>
+        </div>
+        <div class="home-row" style="--shade:#0d0d0d">
+          <div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div><div class="home-tile"></div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/">building pages to last</a>
+    </footer>
+  </body>
+</html>
