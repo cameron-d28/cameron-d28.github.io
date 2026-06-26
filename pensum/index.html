@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>annual battery</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body class="pensum">
+<h1>annual battery</h1>
+
+<!-- Battery: outer body + terminal nub on the right. The fill rect and item
+     dividers are injected by render(); the cap label sits in the body's center. -->
+<svg id="battery" viewBox="0 0 1000 200" preserveAspectRatio="none" role="img" aria-label="annual hours battery">
+  <rect class="batt-body" x="2" y="2" width="956" height="196" rx="10" />
+  <rect class="batt-nub" x="962" y="64" width="34" height="72" rx="6" />
+  <g id="fill"></g>
+  <g id="dividers"></g>
+  <text id="capLabel" class="batt-label" x="480" y="100" text-anchor="middle" dominant-baseline="central"></text>
+</svg>
+
+<form id="addForm" class="add">
+  <input id="title" type="text" placeholder="activity" autocomplete="off" required>
+  <input id="hours" type="number" placeholder="hours / year" min="0.1" step="0.1" required>
+  <button type="submit">add</button>
+</form>
+<p id="message" class="message" role="status"></p>
+
+<ul id="legend" class="legend"></ul>
+
+<p class="footer">
+  <button id="exportBtn" type="button">export</button>
+  <button id="importBtn" type="button">import</button>
+  <input id="importFile" type="file" accept="application/json" hidden>
+  <a href="/home/">&larr; home</a>
+</p>
+
+<script>
+  const YEAR_HOURS = 8760; // 365 × 24
+  const KEY = 'pensum:items';
+  const INNER_X = 6, INNER_W = 948; // fillable region inside the battery body
+
+  const fill = document.getElementById('fill');
+  const dividers = document.getElementById('dividers');
+  const capLabel = document.getElementById('capLabel');
+  const legend = document.getElementById('legend');
+  const message = document.getElementById('message');
+
+  let items = load();
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    catch { return []; }
+  }
+  function save() {
+    localStorage.setItem(KEY, JSON.stringify(items));
+  }
+
+  function used() {
+    return items.reduce((sum, item) => sum + item.hours, 0);
+  }
+  function remaining() {
+    return YEAR_HOURS - used();
+  }
+  function fmt(n) {
+    return n.toLocaleString('en-US', { maximumFractionDigits: 1 });
+  }
+  function svg(tag, attrs) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const key in attrs) el.setAttribute(key, attrs[key]);
+    return el;
+  }
+
+  function render() {
+    const filled = used();
+    const fillWidth = (filled / YEAR_HOURS) * INNER_W;
+
+    fill.replaceChildren(svg('rect', {
+      class: 'batt-fill', x: INNER_X, y: 6, width: fillWidth, height: 188, rx: 6,
+    }));
+
+    // A divider line at each item boundary so slices read as distinct.
+    dividers.replaceChildren();
+    let cursor = 0;
+    items.forEach((item, i) => {
+      cursor += item.hours;
+      if (i === items.length - 1) return; // no line at the fill's leading edge
+      const x = INNER_X + (cursor / YEAR_HOURS) * INNER_W;
+      dividers.appendChild(svg('line', {
+        class: 'batt-divider', x1: x, y1: 6, x2: x, y2: 194,
+      }));
+    });
+
+    const pct = Math.round((filled / YEAR_HOURS) * 100);
+    capLabel.textContent = fmt(filled) + ' / ' + fmt(YEAR_HOURS) + ' h · ' + pct + '%';
+
+    legend.replaceChildren();
+    items.forEach((item, i) => {
+      const li = document.createElement('li');
+      li.dataset.i = i;
+      const pctItem = Math.round((item.hours / YEAR_HOURS) * 100);
+      li.innerHTML =
+        '<span class="legend-title"></span>' +
+        '<span class="legend-meta">' + fmt(item.hours) + ' h · ' + pctItem + '%</span>' +
+        '<button class="legend-remove" type="button" aria-label="remove">×</button>';
+      li.querySelector('.legend-title').textContent = item.title;
+      legend.appendChild(li);
+    });
+  }
+
+  function addItem(title, hours) {
+    if (hours > remaining()) {
+      message.textContent = 'only ' + fmt(remaining()) + ' h left in the year';
+      return;
+    }
+    items.push({ title, hours });
+    message.textContent = '';
+    save();
+    render();
+  }
+
+  function removeItem(index) {
+    items.splice(index, 1);
+    save();
+    render();
+  }
+
+  document.getElementById('addForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = e.target.title.value.trim();
+    const hours = parseFloat(e.target.hours.value);
+    if (!title || !(hours > 0)) return;
+    addItem(title, hours);
+    e.target.reset();
+    e.target.title.focus();
+  });
+
+  // Event delegation — one listener handles every legend row's remove + highlight.
+  legend.addEventListener('click', (e) => {
+    const li = e.target.closest('li');
+    if (!li) return;
+    if (e.target.closest('.legend-remove')) { removeItem(+li.dataset.i); return; }
+    li.classList.toggle('active');
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'pensum.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  const importFile = document.getElementById('importFile');
+  document.getElementById('importBtn').addEventListener('click', () => importFile.click());
+  importFile.addEventListener('change', () => {
+    const file = importFile.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        items = JSON.parse(reader.result);
+        save();
+        render();
+        message.textContent = '';
+      } catch {
+        message.textContent = 'could not read that file';
+      }
+    };
+    reader.readAsText(file);
+    importFile.value = '';
+  });
+
+  render();
+</script>
+</body>
+</html>

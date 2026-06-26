@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis ~ Contemplative</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/public/website_pfp.png" type="image/png" />
+  </head>
+  <body>
+    <header class="list-page-header">
+      <h1>events worth seeing</h1>
+      <a class="back-button" href="/">back</a>
+    </header>
+    <main class="list-page-main">
+      <ul id="event-list"></ul>
+      <p id="empty-note" hidden>nothing yet — text the bot.</p>
+    </main>
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/">building pages to last</a>
+    </footer>
+
+    <!-- Events are written by the Telegram bot to the `events-data` branch and
+         read here at load time. Deploys never touch that branch, so the list
+         survives every rebuild. -->
+    <script>
+      const EVENTS_URL =
+        "https://raw.githubusercontent.com/cameron-d28/cameron-d28.github.io/events-data/events.json";
+      const list = document.getElementById("event-list");
+      const emptyNote = document.getElementById("empty-note");
+
+      fetch(EVENTS_URL, { cache: "no-store" })
+        .then((response) => response.json())
+        .then((store) => render(store.events ?? []))
+        .catch(() => (emptyNote.hidden = false));
+
+      function render(events) {
+        if (events.length === 0) return (emptyNote.hidden = false);
+        for (const event of events.slice().reverse()) {
+          const item = document.createElement("li");
+          item.textContent = event.text;
+          list.appendChild(item);
+        }
+      }
+    </script>
+  </body>
+</html>
