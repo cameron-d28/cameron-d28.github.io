@@ -1,0 +1,54 @@
+name: telegram-events
+
+# Every ~5 minutes, look for new messages to the bot and append them to
+# events.json on the `events-data` branch. GitHub's smallest cron interval is
+# 5 minutes (and runs can be delayed under load), so this is best-effort, not
+# instant — which matches the "every few min" design.
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: telegram-events
+  cancel-in-progress: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      # Default branch: has scripts/telegram-poll.js.
+      - name: Checkout scripts
+        uses: actions/checkout@v4
+
+      # Data branch: has only events.json. Kept separate so site deploys
+      # (which force-push build/ to main) never wipe the event list.
+      - name: Checkout events-data branch
+        uses: actions/checkout@v4
+        with:
+          ref: events-data
+          path: data
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Poll Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: bun run scripts/telegram-poll.js
+
+      - name: Commit new events
+        working-directory: data
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No new events."
+            exit 0
+          fi
+          git config user.name "telegram-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add events.json
+          git commit -m "events: add from telegram"
+          git push
