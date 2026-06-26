@@ -33,6 +33,7 @@ for (const update of payload.result) {
   const message = update.message;
   if (!message?.text) continue;
   if (allowedChatId && String(message.chat.id) !== allowedChatId) continue;
+  if (message.text.startsWith("/")) continue; // ignore bot commands like /start
 
   store.events.push({
     id: update.update_id,
