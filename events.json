@@ -1,4 +1,15 @@
 {
-  "lastUpdateId": 0,
-  "events": []
+  "lastUpdateId": 260375182,
+  "events": [
+    {
+      "id": 260375181,
+      "text": "/start",
+      "added": "2026-06-26T23:01:01.000Z"
+    },
+    {
+      "id": 260375182,
+      "text": "Tour de France",
+      "added": "2026-06-26T23:01:37.000Z"
+    }
+  ]
 }
