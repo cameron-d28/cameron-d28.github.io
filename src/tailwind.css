@@ -88,6 +88,68 @@
   @apply flex flex-row justify-center items-center space-x-4;
 }
 
+/* websites page: left-aligned, color-coded tags, collapsible filters */
+
+body.websites main {
+  @apply text-left items-start pl-6;
+}
+
+body.websites .tag-filter {
+  @apply flex flex-row flex-wrap items-center gap-x-2 gap-y-1 mb-4;
+}
+
+body.websites .tag-filter button {
+  @apply text-sm rounded border px-2 py-0.5;
+  color: var(--c);
+  border-color: var(--c);
+}
+
+body.websites .tag-filter button.active {
+  background: var(--c);
+  @apply text-white;
+}
+
+body.websites .tag-more-toggle {
+  --c: #777;
+}
+
+body.websites .tag-more {
+  @apply relative;
+}
+
+body.websites .tag-more-menu {
+  display: none;
+  @apply absolute left-0 top-full mt-1 flex-col bg-white border border-gray-300 p-2 gap-y-1 z-10;
+}
+
+body.websites .tag-more.open .tag-more-menu {
+  @apply flex;
+}
+
+body.websites .chip {
+  @apply text-xs ml-2 rounded px-1.5 py-0.5 text-white;
+  background: var(--c);
+}
+
+body.websites li.hidden {
+  display: none;
+}
+
+/* one variable per tag colors both the chip and its filter button */
+body.websites [data-tag] { --c: #777; }
+body.websites [data-tag="informational"] { --c: #5b6b7a; }
+body.websites [data-tag="architecture"] { --c: #8a7a5c; }
+body.websites [data-tag="tool"] { --c: #5f7a5f; }
+body.websites [data-tag="profile"] { --c: #77677f; }
+body.websites [data-tag="capital"] { --c: #7a6f4a; }
+body.websites [data-tag="business"] { --c: #6f6f6f; }
+body.websites [data-tag="political"] { --c: #8a5c5c; }
+body.websites [data-tag="book"] { --c: #6f7a4a; }
+body.websites [data-tag="art"] { --c: #9a6b7a; }
+body.websites [data-tag="news"] { --c: #4a6b7a; }
+body.websites [data-tag="one-pager"] { --c: #a07a55; }
+body.websites [data-tag="mine"] { --c: #333; }
+
 /* resume page */
 
 .resume-section {
@@ -424,6 +486,153 @@ body.ajal #tooltip {
 }
 body.ajal #tooltip.visible {
   opacity: 1;
+}
+
+/* pensum page — annual battery (scoped under body.pensum) */
+
+body.pensum {
+  --bg: #fafaf9;
+  --ink: #111;
+  --gray: #999;
+  --border: #ddd;
+  --serif: Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, Menlo, Monaco, monospace;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+body.pensum h1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 0 0 2rem;
+  letter-spacing: -0.01em;
+}
+body.pensum #battery {
+  width: 100%;
+  height: 120px;
+  display: block;
+  margin-bottom: 1.5rem;
+  overflow: visible;
+}
+body.pensum .batt-body {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4;
+}
+body.pensum .batt-nub {
+  fill: var(--ink);
+}
+body.pensum .batt-fill {
+  fill: var(--ink);
+}
+body.pensum .batt-divider {
+  stroke: var(--bg);
+  stroke-width: 2;
+}
+body.pensum .batt-label {
+  fill: #fff; /* difference blend keeps it legible over both fill and bg */
+  font-family: var(--mono);
+  font-size: 28px;
+  mix-blend-mode: difference;
+}
+body.pensum .add {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+body.pensum .add input {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  background: none;
+  color: var(--ink);
+}
+body.pensum .add #title {
+  flex: 1;
+}
+body.pensum .add #hours {
+  width: 8rem;
+}
+body.pensum .add button,
+body.pensum .footer button {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+  color: var(--gray);
+}
+body.pensum .add button:hover,
+body.pensum .footer button:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+body.pensum .message {
+  min-height: 1.2rem;
+  margin: 0 0 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+body.pensum .legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body.pensum .legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+body.pensum .legend li.active {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+body.pensum .legend-title {
+  flex: 1;
+}
+body.pensum .legend-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+body.pensum .legend-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--gray);
+}
+body.pensum .legend-remove:hover {
+  color: var(--ink);
+}
+body.pensum .footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+body.pensum .footer a {
+  margin-left: auto;
+  color: var(--gray);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+body.pensum .footer a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
 }
 
 /* home page — gradient tile grid (scoped under body.home) */
