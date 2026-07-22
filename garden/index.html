@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis ~ Garden</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/public/website_pfp.png" type="image/png" />
+  </head>
+  <body class="garden">
+    <header class="list-page-header">
+      <h1>garden</h1>
+      <a class="back-button" href="/home/">back</a>
+    </header>
+
+    <main class="list-page-main">
+      <!-- Both screens live in the DOM at once; route() toggles hidden on them. -->
+      <section id="indexView">
+        <form id="createForm" class="add-row">
+          <input id="plotName" placeholder="plot name" autocomplete="off" required />
+          <label>w: <input id="plotW" type="number" min="0.2" step="0.2" required /> m</label>
+          <label>x h: <input id="plotH" type="number" min="0.2" step="0.2" required /> m</label>
+          <button type="submit">create plot</button>
+        </form>
+        <h2>existing plots</h2>
+        <ul id="plotList" class="rows"></ul>
+      </section>
+
+      <section id="plotView" hidden>
+        <div class="plot-head">
+          <h2 id="plotTitle"></h2>
+          <button id="allPlots" class="row-act" type="button">all plots</button>
+        </div>
+        <div class="split">
+          <div class="grid-wrap"><div id="grid" class="plot-grid"></div></div>
+          <div>
+            <h2>crops</h2>
+            <form id="cropForm" class="add-row">
+              <input id="cropName" placeholder="add:" autocomplete="off" required />
+              <button type="submit">add</button>
+            </form>
+            <ul id="cropList" class="rows"></ul>
+            <div id="tools" class="tools">
+              <button data-tool="path" type="button">path</button>
+              <button data-tool="erase" type="button">erase</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/">building pages to last</a>
+    </footer>
+
+    <script>
+      const KEY = 'garden:plots';
+      const CELL_M = 0.2; // one grid square is 20cm a side
+      const PALETTE = ['#7a9a5f', '#a0763f', '#8a5c7a', '#4a7a8a', '#a89a45', '#6f5f9a', '#a05c5c', '#5f8a6f'];
+      const PATH_COLOR = '#c9c2b4';
+
+      const indexView = document.getElementById('indexView');
+      const plotView = document.getElementById('plotView');
+      const plotList = document.getElementById('plotList');
+      const cropList = document.getElementById('cropList');
+      const plotTitle = document.getElementById('plotTitle');
+      const grid = document.getElementById('grid');
+      const tools = document.getElementById('tools');
+
+      let plots = load();
+      let tool = null; // a crop id, 'path', 'erase', or null for nothing selected
+      let painting = false;
+
+      function load() {
+        try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+        catch { return []; }
+      }
+      function save() {
+        localStorage.setItem(KEY, JSON.stringify(plots));
+      }
+      function uid() {
+        return Math.random().toString(36).slice(2, 8);
+      }
+      function fmt(n) {
+        return +n.toFixed(2);
+      }
+
+      // Cell counts are the source of truth; metres are only ever a display of them.
+      function cellCount(metres) {
+        return Math.max(1, Math.round(metres / CELL_M));
+      }
+      function metres(cells) {
+        return fmt(cells * CELL_M);
+      }
+      function sqm(plot, cropId) {
+        const painted = Object.values(plot.cells).filter((id) => id === cropId).length;
+        return painted * CELL_M * CELL_M;
+      }
+      function colorOf(plot, cropId) {
+        if (cropId === 'path') return PATH_COLOR;
+        const crop = plot.crops.find((c) => c.id === cropId);
+        return crop && crop.color;
+      }
+      function nextColor(plot) {
+        const taken = plot.crops.map((c) => c.color);
+        return PALETTE.find((c) => !taken.includes(c)) || PALETTE[plot.crops.length % PALETTE.length];
+      }
+      function currentPlot() {
+        const id = location.hash.replace('#plot-', '');
+        return plots.find((p) => p.id === id) || null;
+      }
+
+      // One row builder serves both lists, so the two screens share their markup.
+      function rowEl({ id, name, meta, color, actions }) {
+        const li = document.createElement('li');
+        li.dataset.id = id;
+        li.innerHTML =
+          (color ? '<span class="swatch" style="background:' + color + '"></span>' : '') +
+          '<span class="row-name"></span>' +
+          '<span class="row-meta">' + meta + '</span>' +
+          actions.map((a) => '<button class="row-act" type="button" data-act="' + a.act + '" aria-label="' + a.act + '">' + a.glyph + '</button>').join('');
+        li.querySelector('.row-name').textContent = name;
+        return li;
+      }
+
+      function renderIndex() {
+        plotList.replaceChildren(...plots.map((plot) => rowEl({
+          id: plot.id,
+          name: plot.name,
+          meta: metres(plot.cols) + ' × ' + metres(plot.rows) + ' m (' + plot.cols + ' × ' + plot.rows + ')',
+          actions: [{ act: 'dup', glyph: '⧉' }, { act: 'del', glyph: '×' }],
+        })));
+      }
+
+      function renderGrid(plot) {
+        grid.style.setProperty('--cols', plot.cols);
+        const cells = [];
+        for (let i = 0; i < plot.cols * plot.rows; i++) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.dataset.i = i;
+          if (plot.cells[i]) cell.style.background = colorOf(plot, plot.cells[i]);
+          cells.push(cell);
+        }
+        grid.replaceChildren(...cells);
+      }
+
+      function renderCrops(plot) {
+        cropList.replaceChildren(...plot.crops.map((crop) => rowEl({
+          id: crop.id,
+          name: crop.name,
+          color: crop.color,
+          meta: fmt(sqm(plot, crop.id)) + ' m²',
+          actions: [{ act: 'del', glyph: '×' }],
+        })));
+        markTool();
+      }
+
+      function markTool() {
+        cropList.querySelectorAll('li').forEach((li) => li.classList.toggle('active', li.dataset.id === tool));
+        tools.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b.dataset.tool === tool));
+      }
+
+      function renderDetail(plot) {
+        plotTitle.textContent = plot.name;
+        renderGrid(plot);
+        renderCrops(plot);
+      }
+
+      function route() {
+        const plot = currentPlot();
+        tool = null;
+        indexView.hidden = !!plot;
+        plotView.hidden = !plot;
+        if (plot) renderDetail(plot);
+        else renderIndex();
+      }
+
+      function addPlot(name, width, height) {
+        plots.push({ id: uid(), name, cols: cellCount(width), rows: cellCount(height), crops: [], cells: {} });
+        save();
+        renderIndex();
+      }
+      function duplicatePlot(id) {
+        const copy = structuredClone(plots.find((p) => p.id === id));
+        copy.id = uid();
+        copy.name += ' copy';
+        plots.push(copy);
+        save();
+        renderIndex();
+      }
+      function removePlot(id) {
+        plots = plots.filter((p) => p.id !== id);
+        save();
+        renderIndex();
+      }
+
+      function addCrop(plot, name) {
+        const crop = { id: uid(), name, color: nextColor(plot) };
+        plot.crops.push(crop);
+        tool = crop.id; // a freshly added crop is what you want to paint with
+        save();
+        renderCrops(plot);
+      }
+      // Removing a crop clears its cells too, so the map can never hold orphans.
+      function removeCrop(plot, id) {
+        plot.crops = plot.crops.filter((c) => c.id !== id);
+        for (const i in plot.cells) if (plot.cells[i] === id) delete plot.cells[i];
+        if (tool === id) tool = null;
+        save();
+        renderDetail(plot);
+      }
+
+      // Mutates one cell only — never re-renders the grid, which can be 10k nodes.
+      function paintCell(el) {
+        if (!tool || !el || !el.classList.contains('cell')) return;
+        const plot = currentPlot();
+        if (tool === 'erase') {
+          delete plot.cells[el.dataset.i];
+          el.style.background = '';
+        } else {
+          plot.cells[el.dataset.i] = tool;
+          el.style.background = colorOf(plot, tool);
+        }
+      }
+
+      document.getElementById('createForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('plotName').value.trim();
+        const width = Number(document.getElementById('plotW').value);
+        const height = Number(document.getElementById('plotH').value);
+        if (!name || !(width > 0) || !(height > 0)) return;
+        addPlot(name, width, height);
+        e.target.reset();
+      });
+
+      document.getElementById('cropForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('cropName').value.trim();
+        if (!name) return;
+        addCrop(currentPlot(), name);
+        e.target.reset();
+      });
+
+      // Event delegation — one listener per list handles every row.
+      plotList.addEventListener('click', (e) => {
+        const li = e.target.closest('li');
+        if (!li) return;
+        if (e.target.dataset.act === 'del') removePlot(li.dataset.id);
+        else if (e.target.dataset.act === 'dup') duplicatePlot(li.dataset.id);
+        else location.hash = 'plot-' + li.dataset.id;
+      });
+
+      cropList.addEventListener('click', (e) => {
+        const li = e.target.closest('li');
+        if (!li) return;
+        if (e.target.dataset.act === 'del') return removeCrop(currentPlot(), li.dataset.id);
+        tool = li.dataset.id;
+        markTool();
+      });
+
+      tools.addEventListener('click', (e) => {
+        if (!e.target.dataset.tool) return;
+        tool = e.target.dataset.tool;
+        markTool();
+      });
+
+      document.getElementById('allPlots').addEventListener('click', () => {
+        location.hash = '';
+      });
+
+      // elementFromPoint rather than pointerover: pointerover never fires under a
+      // moving finger, and pointer capture would pin every event to the first cell.
+      grid.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        painting = true;
+        paintCell(e.target);
+      });
+      document.addEventListener('pointermove', (e) => {
+        if (painting) paintCell(document.elementFromPoint(e.clientX, e.clientY));
+      });
+      window.addEventListener('pointerup', () => {
+        if (!painting) return;
+        painting = false;
+        save(); // once per stroke, not once per cell
+        renderCrops(currentPlot());
+      });
+
+      window.addEventListener('hashchange', route);
+      route();
+    </script>
+  </body>
+</html>
