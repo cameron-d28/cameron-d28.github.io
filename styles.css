@@ -1270,6 +1270,10 @@ body.websites [data-tag="mine"] {
   --c: #333;
 }
 
+body.websites [data-tag="personal"] {
+  --c: #4a7a70;
+}
+
 /* resume page */
 
 .resume-section {
