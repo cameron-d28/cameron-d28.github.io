@@ -36,7 +36,7 @@ if (!payload.ok) {
   process.exit(1);
 }
 
-const handlers = { add: addItem, fund: fundItem };
+const handlers = { add: addItem, fund: fundItem, remove: removeItem };
 let addedEvents = 0;
 let addedItems = 0;
 
@@ -112,6 +112,19 @@ function addItem(args, message, updateId) {
   return { ok: true, text: `added ${name} — ${money(amount)}` };
 }
 
+// Shared by /fund and /remove: a name must identify exactly one item, so a
+// typo can never quietly act on the wrong thing.
+function findOne(name) {
+  const matches = items.items.filter((item) =>
+    item.name.toLowerCase().includes(name.toLowerCase()),
+  );
+  if (matches.length === 0) return fail(`nothing matches "${name}"`);
+  if (matches.length > 1) {
+    return fail(`"${name}" matches ${matches.length} items — be more specific`);
+  }
+  return { ok: true, item: matches[0] };
+}
+
 // /fund name | amount
 function fundItem(args, message) {
   const [name, amountText] = args;
@@ -120,21 +133,38 @@ function fundItem(args, message) {
   const amount = parseMoney(amountText);
   if (amount === null) return fail(`not an amount: ${amountText}`);
 
-  const matches = items.items.filter((item) =>
-    item.name.toLowerCase().includes(name.toLowerCase()),
-  );
-  if (matches.length === 0) return fail(`nothing matches "${name}"`);
-  if (matches.length > 1) {
-    return fail(`"${name}" matches ${matches.length} items — be more specific`);
-  }
+  const found = findOne(name);
+  if (!found.ok) return found;
 
-  const item = matches[0];
-  item.contributions.push({
+  found.item.contributions.push({
     who: senderName(message.from),
     amount,
     when: sentAt(message),
   });
+  const { item } = found;
   return { ok: true, text: `${item.name}: ${money(raised(item))} of ${money(item.cost)}` };
+}
+
+// /remove name
+function removeItem(args) {
+  const [name] = args;
+  if (!name) return fail("usage: /remove name");
+
+  const found = findOne(name);
+  if (!found.ok) return found;
+
+  const { item } = found;
+  items.items.splice(items.items.indexOf(item), 1);
+
+  // Say what was thrown away — the git history keeps it, but the group won't
+  // see the commit.
+  const pledged = raised(item);
+  return {
+    ok: true,
+    text: pledged
+      ? `removed ${item.name} — discarded ${money(pledged)} in contributions`
+      : `removed ${item.name}`,
+  };
 }
 
 async function reply(chatId, text) {
