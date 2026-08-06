@@ -1,9 +1,12 @@
 name: telegram-events
 
 # Every ~5 minutes, look for new messages to the bot and append them to
-# events.json on the `events-data` branch. GitHub's smallest cron interval is
-# 5 minutes (and runs can be delayed under load), so this is best-effort, not
-# instant — which matches the "every few min" design.
+# events.json and emendorum.json on the `events-data` branch. GitHub's smallest
+# cron interval is 5 minutes (and runs can be delayed under load), so this is
+# best-effort, not instant — which matches the "every few min" design.
+#
+# Both feeds run through this one job on purpose: getUpdates has a single offset
+# per bot token, so a second polling workflow would eat updates this one needs.
 on:
   schedule:
     - cron: "*/5 * * * *"
@@ -38,6 +41,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_EMENDORUM_CHAT_ID: ${{ secrets.TELEGRAM_EMENDORUM_CHAT_ID }}
         run: bun run scripts/telegram-poll.js
 
       - name: Commit new events
@@ -49,6 +53,6 @@ jobs:
           fi
           git config user.name "telegram-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add events.json
+          git add events.json emendorum.json
           git commit -m "events: add from telegram"
           git push

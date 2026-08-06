@@ -149,6 +149,66 @@ body.websites [data-tag="art"] { --c: #9a6b7a; }
 body.websites [data-tag="news"] { --c: #4a6b7a; }
 body.websites [data-tag="one-pager"] { --c: #a07a55; }
 body.websites [data-tag="mine"] { --c: #333; }
+body.websites [data-tag="personal"] { --c: #4a7a70; }
+
+/* emendorum page: each row is its own progress bar, filled to --pct */
+
+body.emendorum main {
+  @apply text-left items-start;
+}
+
+body.emendorum .person-filter {
+  @apply flex flex-row flex-wrap items-center gap-x-2 gap-y-1 mb-4;
+}
+
+body.emendorum .person-filter button {
+  @apply text-sm rounded border px-2 py-0.5;
+  color: rgb(var(--c));
+  border-color: rgb(var(--c));
+}
+
+body.emendorum .person-filter button.active {
+  background: rgb(var(--c));
+  @apply text-white;
+}
+
+body.emendorum .sort-select {
+  @apply text-sm rounded border px-2 py-0.5 bg-white;
+  --c: 119 119 119;
+  color: rgb(var(--c));
+  border-color: rgb(var(--c));
+}
+
+body.emendorum .chip {
+  @apply text-xs ml-2 rounded px-1.5 py-0.5 text-white whitespace-nowrap;
+  background: rgb(var(--c));
+}
+
+body.emendorum ul {
+  @apply w-full max-w-2xl flex flex-col gap-y-1;
+}
+
+/* rows share one track so their fills are comparable at a glance */
+body.emendorum li {
+  @apply flex flex-row items-center px-3 py-1.5 rounded-sm text-sm;
+  background: linear-gradient(
+    to right,
+    rgb(var(--c) / 0.18) var(--pct),
+    rgb(var(--c) / 0.05) var(--pct)
+  );
+}
+
+body.emendorum .tally {
+  @apply text-xs ml-auto pl-4 text-gray-500 tabular-nums whitespace-nowrap;
+}
+
+body.emendorum li.hidden {
+  display: none;
+}
+
+body.emendorum li.done {
+  @apply opacity-60;
+}
 
 /* resume page */
 
@@ -702,4 +762,155 @@ body.home .home-link {
 }
 body.home .home-link:hover {
   transform: translateY(-6px);
+}
+
+/* garden page — plot planner (scoped under body.garden) */
+
+body.garden {
+  --bg: #fafaf9;
+  --ink: #111;
+  --gray: #999;
+  --border: #ddd;
+  --serif: Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, Menlo, Monaco, monospace;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+body.garden main {
+  @apply text-left;
+}
+body.garden h2 {
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* one form treatment for both "create plot" and "add crop" */
+body.garden .add-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+body.garden .add-row input {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  background: none;
+  color: var(--ink);
+  min-width: 0;
+}
+body.garden .add-row input[type="number"] {
+  width: 4.5rem;
+}
+body.garden .add-row button,
+body.garden .tools button {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+body.garden .add-row button:hover,
+body.garden .tools button:hover,
+body.garden .tools button.active {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* one row treatment shared by the plot list and the crop list */
+body.garden .rows {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body.garden .rows li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+body.garden .rows li.active {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+body.garden .row-name {
+  flex: 1;
+}
+body.garden .row-meta {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+body.garden .row-act {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gray);
+  font: inherit;
+  padding: 0 0.2rem;
+}
+body.garden .row-act:hover {
+  color: var(--ink);
+}
+body.garden .swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 2px;
+  flex: none;
+}
+
+body.garden .plot-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+body.garden .split {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  body.garden .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* cells stay square because rows and columns share one track size; the clamp keeps
+   them clickable on big plots and the wrapper scrolls once they hit the floor */
+body.garden .grid-wrap {
+  overflow: auto;
+  max-height: 78vh;
+}
+body.garden .plot-grid {
+  --cell: clamp(7px, calc(45vw / var(--cols)), 26px);
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--cell));
+  grid-auto-rows: var(--cell);
+  gap: 1px;
+  width: max-content;
+  user-select: none;
+  touch-action: none;
+}
+body.garden .cell {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--border);
+  cursor: crosshair;
+}
+body.garden .tools {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
 }
