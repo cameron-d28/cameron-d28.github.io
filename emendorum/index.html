@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cameron davis ~ Emendorum</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" href="/public/website_pfp.png" type="image/png" />
+  </head>
+  <body class="emendorum">
+    <header class="list-page-header">
+      <h1>emendorum</h1>
+      <a class="back-button" href="/home/">back</a>
+    </header>
+    <main class="list-page-main">
+      <div class="person-filter">
+        <select class="sort-select">
+          <option value="down">sort: realization ↓</option>
+          <option value="up">sort: realization ↑</option>
+          <option value="newest">sort: newest</option>
+        </select>
+      </div>
+      <ul id="item-list"></ul>
+      <p id="empty-note" hidden>
+        nothing yet — text the bot <code>/add name | url | cost</code>.
+      </p>
+    </main>
+    <footer>
+      <a href="https://jeffhuang.com/designed_to_last/">building pages to last</a>
+    </footer>
+
+    <!-- Items are written by the Telegram bot to the `events-data` branch and read
+         here at load time. Deploys never touch that branch, so the list survives
+         every rebuild. The page is read-only: all writes arrive through Telegram. -->
+    <script>
+      const ITEMS_URL =
+        "https://raw.githubusercontent.com/cameron-d28/cameron-d28.github.io/events-data/emendorum.json";
+
+      // The websites-page palette as rgb triplets, so one variable serves both the
+      // opaque chip and the translucent row fill.
+      const PALETTE = [
+        "91 107 122", "138 122 92", "95 122 95", "119 103 127",
+        "122 111 74", "138 92 92", "111 122 74", "154 107 122",
+      ];
+      const list = document.getElementById("item-list");
+      const filterBar = document.querySelector(".person-filter");
+      const sortSelect = document.querySelector(".sort-select");
+      const emptyNote = document.getElementById("empty-note");
+
+      const activePeople = new Set();
+      let items = [];
+      let colors = new Map();
+
+      fetch(ITEMS_URL, { cache: "no-store" })
+        .then((response) => response.json())
+        .then((store) => start(store.items ?? []))
+        .catch(() => (emptyNote.hidden = false));
+
+      function start(fetched) {
+        if (fetched.length === 0) return (emptyNote.hidden = false);
+        items = fetched;
+        assignColors();
+        buildFilter();
+        render();
+      }
+
+      const raised = (item) =>
+        item.contributions.reduce((total, one) => total + one.amount, 0);
+
+      const realization = (item) => Math.min(raised(item) / item.cost, 1);
+
+      const isDone = (item) => realization(item) === 1;
+
+      const money = (amount) => "$" + Math.round(amount).toLocaleString();
+
+      // Colors follow the sorted name order, so a person keeps their color as long
+      // as the cast doesn't change.
+      function assignColors() {
+        const names = [...new Set(items.map((item) => item.addedBy))].sort();
+        colors = new Map(
+          names.map((name, index) => [name, PALETTE[index % PALETTE.length]]),
+        );
+      }
+
+      function buildFilter() {
+        for (const [name, color] of colors) {
+          const button = document.createElement("button");
+          button.style.setProperty("--c", color);
+          button.textContent = name;
+          button.addEventListener("click", () => {
+            activePeople.has(name)
+              ? activePeople.delete(name)
+              : activePeople.add(name);
+            button.classList.toggle("active");
+            applyFilter();
+          });
+          filterBar.append(button);
+        }
+      }
+
+      sortSelect.addEventListener("change", render);
+
+      function sorted() {
+        const copy = items.slice();
+        if (sortSelect.value === "newest") {
+          return copy.sort((a, b) => b.added.localeCompare(a.added));
+        }
+        const direction = sortSelect.value === "down" ? -1 : 1;
+        // Funded items sink either way, so live needs stay on top.
+        return copy.sort(
+          (a, b) =>
+            Number(isDone(a)) - Number(isDone(b)) ||
+            direction * (realization(a) - realization(b)),
+        );
+      }
+
+      function render() {
+        list.replaceChildren(...sorted().map(row));
+        applyFilter();
+      }
+
+      function row(item) {
+        const percent = Math.round(realization(item) * 100);
+
+        const element = document.createElement("li");
+        element.dataset.person = item.addedBy;
+        element.style.setProperty("--c", colors.get(item.addedBy));
+        element.style.setProperty("--pct", `${percent}%`);
+        element.classList.toggle("done", isDone(item));
+
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.textContent = `${item.name} — ${money(item.cost)}`;
+
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = item.addedBy;
+
+        const tally = document.createElement("span");
+        tally.className = "tally";
+        tally.textContent = isDone(item)
+          ? "funded"
+          : `${money(raised(item))} / ${money(item.cost)} · ${percent}%`;
+
+        element.append(link, chip, tally);
+        return element;
+      }
+
+      function applyFilter() {
+        for (const element of list.children) {
+          const show =
+            activePeople.size === 0 || activePeople.has(element.dataset.person);
+          element.classList.toggle("hidden", !show);
+        }
+      }
+    </script>
+  </body>
+</html>

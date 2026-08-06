@@ -674,6 +674,10 @@ a {
   margin-left: 0.5rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -744,6 +748,10 @@ a {
 
 .w-full {
   width: 100%;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
 }
 
 .flex-1 {
@@ -845,6 +853,10 @@ a {
   border-radius: 0.25rem;
 }
 
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -940,6 +952,11 @@ a {
   padding-bottom: 0.125rem;
 }
 
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -952,6 +969,10 @@ a {
 
 .pb-2 {
   padding-bottom: 0.5rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
 }
 
 .pl-8 {
@@ -1012,9 +1033,19 @@ a {
   font-style: italic;
 }
 
+.tabular-nums {
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
 
 .text-purple-600 {
@@ -1272,6 +1303,122 @@ body.websites [data-tag="mine"] {
 
 body.websites [data-tag="personal"] {
   --c: #4a7a70;
+}
+
+/* emendorum page: each row is its own progress bar, filled to --pct */
+
+body.emendorum main {
+  align-items: flex-start;
+  text-align: left;
+}
+
+body.emendorum .person-filter {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  row-gap: 0.25rem;
+}
+
+body.emendorum .person-filter button {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(var(--c));
+  border-color: rgb(var(--c));
+}
+
+body.emendorum .person-filter button.active {
+  background: rgb(var(--c));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+body.emendorum .sort-select {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --c: 119 119 119;
+  color: rgb(var(--c));
+  border-color: rgb(var(--c));
+}
+
+body.emendorum .chip {
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  background: rgb(var(--c));
+}
+
+body.emendorum ul {
+  display: flex;
+  width: 100%;
+  max-width: 42rem;
+  flex-direction: column;
+  row-gap: 0.25rem;
+}
+
+/* rows share one track so their fills are comparable at a glance */
+
+body.emendorum li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 0.125rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  background: linear-gradient(
+    to right,
+    rgb(var(--c) / 0.18) var(--pct),
+    rgb(var(--c) / 0.05) var(--pct)
+  );
+}
+
+body.emendorum .tally {
+  margin-left: auto;
+  white-space: nowrap;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+body.emendorum li.hidden {
+  display: none;
+}
+
+body.emendorum li.done {
+  opacity: 0.6;
 }
 
 /* resume page */
